@@ -197,8 +197,10 @@
         }
         
         .team-img {
-            height: 250px;
+            width: 100%;
+            height: 300px;
             object-fit: cover;
+            object-position: center;
             transition: all 0.5s ease;
         }
         
@@ -363,6 +365,84 @@
             border-color: rgba(255,255,255,0.1);
         }
         
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+        
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #25d366;
+            opacity: 0.7;
+            z-index: -1;
+            animation: ripple 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-float i {
+            z-index: 1;
+            position: relative;
+        }
+        
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+        }
+        
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .section-title {
@@ -438,11 +518,11 @@
                     <h2 class="section-title fade-in-left">Who We Are</h2>
                     <p class="lead fw-bold fade-in-left">Pioneering the future of restaurant technology with innovative solutions</p>
                     
-                    <div class="since-badge fade-in-left">Since 2021</div>
+                    <div class="since-badge fade-in-left">Since 2015</div>
                     
                     <p class="fade-in-left">At Flow POS, we're revolutionizing the restaurant industry with cutting-edge technology designed by hospitality veterans. Our journey began when we recognized the need for a smarter, more intuitive point-of-sale system that truly understands restaurant operations.</p>
                     
-                    <p class="fade-in-left">Born during the unprecedented challenges of 2021, we've grown from a simple POS solution to a comprehensive restaurant management ecosystem. Our platform combines deep industry knowledge with technological innovation to deliver tools that streamline operations, boost efficiency, and enhance guest experiences.</p>
+                    <p class="fade-in-left">Born during the unprecedented challenges of 2015, we've grown from a simple POS solution to a comprehensive restaurant management ecosystem. Our platform combines deep industry knowledge with technological innovation to deliver tools that streamline operations, boost efficiency, and enhance guest experiences.</p>
                 </div>
                 <div class="col-lg-6">
                     <img src="assets/images/about/PC1 about.jpg" 
@@ -479,52 +559,45 @@
             <div class="row">
                 <div class="col-md-6 col-lg-3 fade-in" style="transition-delay: 0.1s;">
                     <div class="team-card">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team member" class="card-img-top team-img">
+                        <img src="assets/images/about/Usama.png" alt="Team member" class="card-img-top team-img">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Michael Chen</h5>
+                            <h5 class="card-title">Usama Munawar</h5>
                             <p class="text-muted">CEO & Founder</p>
                             <div class="social-links mt-3">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.linkedin.com/in/usama-munawar-2b33901b3/" target="_blank"><i class="fab fa-linkedin"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 fade-in" style="transition-delay: 0.2s;">
                     <div class="team-card">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team member" class="card-img-top team-img">
+                        <img src="assets/images/about/Hannan.png" alt="Team member" class="card-img-top team-img">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Sarah Johnson</h5>
+                            <h5 class="card-title">Hannan Ali</h5>
                             <p class="text-muted">CTO</p>
                             <div class="social-links mt-3">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 fade-in" style="transition-delay: 0.3s;">
                     <div class="team-card">
-                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Team member" class="card-img-top team-img">
+                        <img src="assets/images/about/Ali.png" alt="Team member" class="card-img-top team-img">
                         <div class="card-body text-center">
-                            <h5 class="card-title">David Rodriguez</h5>
+                            <h5 class="card-title">Ali Hassan</h5>
                             <p class="text-muted">Head of Product</p>
                             <div class="social-links mt-3">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-dribbble"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3 fade-in" style="transition-delay: 0.4s;">
                     <div class="team-card">
-                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Team member" class="card-img-top team-img">
+                        <img src="assets/images/about/ahmand.png" alt="Team member" class="card-img-top team-img">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Emily Wilson</h5>
+                            <h5 class="card-title">Ahmand Raza</h5>
                             <p class="text-muted">Customer Success</p>
                             <div class="social-links mt-3">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -546,7 +619,7 @@
                 <div class="col-md-4 fade-in" style="transition-delay: 0.1s;">
                     <div class="testimonial-card">
                         <div class="text-center mb-4">
-                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer" class="testimonial-img">
+                            <img src="assets/images/about/fatima customer.png" alt="Customer" class="testimonial-img">
                         </div>
                         <div class="rating mb-3">
                             <i class="fas fa-star"></i>
@@ -555,15 +628,15 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p class="mb-4">"Flow POS transformed our operations. Table turnover increased by 20% and our staff actually enjoys using the system."</p>
-                        <h5 class="mb-1">James Wilson</h5>
-                        <p class="text-muted">Owner, Bistro 42</p>
+                        <p class="mb-4">"Flow POS gives me real-time visibility across all locations from my phone. Game changer for multi-location operators."</p>
+                        <h5 class="mb-1">Fatima Ahmed</h5>
+                        <p class="text-muted">CEO, Karachi Food Chain</p>
                     </div>
                 </div>
                 <div class="col-md-4 fade-in" style="transition-delay: 0.2s;">
                     <div class="testimonial-card">
                         <div class="text-center mb-4">
-                            <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Customer" class="testimonial-img">
+                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Customer" class="testimonial-img">
                         </div>
                         <div class="rating mb-3">
                             <i class="fas fa-star"></i>
@@ -580,7 +653,7 @@
                 <div class="col-md-4 fade-in" style="transition-delay: 0.3s;">
                     <div class="testimonial-card">
                         <div class="text-center mb-4">
-                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Customer" class="testimonial-img">
+                            <img src="assets/images/about/Ahmand customer.png" alt="Customer" class="testimonial-img">
                         </div>
                         <div class="rating mb-3">
                             <i class="fas fa-star"></i>
@@ -590,8 +663,8 @@
                             <i class="fas fa-star-half-alt"></i>
                         </div>
                         <p class="mb-4">"The inventory management features saved us thousands in waste. Training staff took half the time of our old system."</p>
-                        <h5 class="mb-1">Robert Kim</h5>
-                        <p class="text-muted">Manager, Sushi Haven</p>
+                        <h5 class="mb-1">Ahmed Sheikh</h5>
+                        <p class="text-muted">Manager, Islamabad Restaurant</p>
                     </div>
                 </div>
             </div>
@@ -702,6 +775,8 @@
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/923016645866" target="_blank" class="btn btn-outline-light btn-sm" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:info@flowtechpos.online" class="btn btn-outline-light btn-sm" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
 
@@ -750,7 +825,7 @@
 
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="small mb-0">© 2023 Flow POS. All rights reserved.</p>
+                    <p class="small mb-0">© 2015 Flow POS. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <p class="small mb-0">Made with <i class="fas fa-heart text-danger"></i> for restaurants</p>
@@ -795,5 +870,10 @@
             window.addEventListener('scroll', animateOnScroll);
         });
     </script>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923016645866" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 </html>
