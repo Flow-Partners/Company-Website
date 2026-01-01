@@ -314,6 +314,84 @@
             border-color: rgba(255,255,255,0.1);
         }
         
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+        
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #25d366;
+            opacity: 0.7;
+            z-index: -1;
+            animation: ripple 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-float i {
+            z-index: 1;
+            position: relative;
+        }
+        
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+        }
+        
         /* Responsive Adjustments */
         @media (max-width: 768px) {
             .section-title {
@@ -352,7 +430,7 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="logo copy.jpg" alt="Flow POS Logo" class="logo-img">
+                <img src="assets/images/shared/logo copy.jpg" alt="Flow POS Logo" class="logo-img">
                 <span style="color: var(--primary-color);">Flow </span>
                 <span style="color: #033a52;">POS</span>
             </a>
@@ -516,7 +594,7 @@
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0 fade-in">
                     <div class="d-flex align-items-center mb-4">
-                        <img src="logo copy.jpg" alt="Flow POS Logo" class="footer-logo">
+                        <img src="assets/images/shared/logo copy.jpg" alt="Flow POS Logo" class="footer-logo">
                         <h4 class="m-0" style="color: white;">Flow POS</h4>
                     </div>
                     
@@ -534,6 +612,8 @@
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/923016645866" target="_blank" class="btn btn-outline-light btn-sm" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:info@flowtechpos.online" class="btn btn-outline-light btn-sm" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
 
@@ -582,7 +662,7 @@
 
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="small mb-0">© 2023 Flow POS. All rights reserved.</p>
+                    <p class="small mb-0">© 2015 Flow POS. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <p class="small mb-0">Made with <i class="fas fa-heart text-danger"></i> for restaurants</p>
@@ -670,5 +750,10 @@
             window.addEventListener('scroll', animateOnScroll);
         });
     </script>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923016645866" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 </html>

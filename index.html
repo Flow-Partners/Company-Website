@@ -74,7 +74,7 @@
         
         /* Updated Hero Section */
   .hero-section {
-    background-image: url('h.png');
+    background-image: url('assets/images/index/landing1 index.png');
     background-size: contain;  
     background-repeat: no-repeat;
     background-position: center;
@@ -456,6 +456,84 @@
             border-color: rgba(255,255,255,0.1);
         }
         
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+        
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #25d366;
+            opacity: 0.7;
+            z-index: -1;
+            animation: ripple 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-float i {
+            z-index: 1;
+            position: relative;
+        }
+        
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+        }
+        
         /* Counter animation */
         .counter {
             font-size: 3rem;
@@ -767,7 +845,7 @@
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="logo copy.jpg" alt="Flow POS Logo" class="logo-img">
+                <img src="assets/images/shared/logo copy.jpg" alt="Flow POS Logo" class="logo-img">
                   <span style="color:#045476;">Flow</span>
                 <span style="color: #033a52;">POS</span>
             </a>
@@ -808,15 +886,15 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                    <h2 class="section-title">Since 2021</h2>
+                    <h2 class="section-title">Since 2015</h2>
                     <p class="lead">Pioneering restaurant technology solutions for nearly a decade</p>
-                    <p>Flow POS has been at the forefront of restaurant technology innovation since our establishment in 2021. We've spent years understanding the unique needs of Pakistani restaurants and developing solutions that address local challenges.</p>
+                    <p>Flow POS has been at the forefront of restaurant technology innovation since our establishment in 2015. We've spent years understanding the unique needs of Pakistani restaurants and developing solutions that address local challenges.</p>
                     <p>Our journey began with a simple mission: to create a POS system that works seamlessly in Pakistan's unique business environment, with features like load-shedding resilience, Urdu language support, and local payment integrations.</p>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" style="position: relative;">
-                    <img src="POS.jpg" alt="Software Development Team" class="img-fluid rounded shadow" style="height:500px; object-fit:contain;">
+                    <img src="assets/images/index/landing2 index.jpg" alt="Software Development Team" class="img-fluid rounded shadow" style="height:500px; object-fit:contain;">
                     <div class="year-box animate__animated animate__fadeInUp animate__delay-1s">
-                        2021
+                        2015
                     </div>
                 </div>
             </div>
@@ -828,7 +906,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="100">
-                    <div class="counter" data-target="200">0</div>
+                    <div class="counter" data-target="700">0</div>
                     <p>Restaurants in Pakistan</p>
                 </div>
                 <div class="col-md-3 col-6 mb-4 mb-md-0" data-aos="fade-up" data-aos-delay="200">
@@ -836,11 +914,11 @@
                     <p>Pakistani Support Team</p>
                 </div>
                 <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="counter" data-target="156">0</div>
+                    <div class="counter" data-target="670">0</div>
                     <p>Customer Satisfaction</p>
                 </div>
                 <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="counter" data-target="8">0</div>
+                    <div class="counter" data-target="15">0</div>
                     <p>Cities Across Pakistan</p>
                 </div>
             </div>
@@ -863,32 +941,32 @@
                             <div class="row justify-content-center">
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                        <img src="Logo11.png" alt="Cafe Lahore" class="client-logo">
+                                        <img src="assets/images/index/index logos/Logo11.png" alt="Cafe Lahore" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                        <img src="logo6.jpg" alt="Karachi BBQ" class="client-logo">
+                                        <img src="assets/images/index/index logos/logo6.jpg" alt="Karachi BBQ" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                        <img src="logo1.jpg" alt="Islamabad Cafe" class="client-logo">
+                                        <img src="assets/images/index/index logos/logo1.jpg" alt="Islamabad Cafe" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                        <img src="Logo12.jpg" alt="Pindi Grill" class="client-logo">
+                                        <img src="assets/images/index/index logos/Logo12.jpg" alt="Pindi Grill" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                        <img src="pizza4.jpg" alt="Quetta Foods" class="client-logo">
+                                        <img src="assets/images/index/index logos/pizza4.jpg" alt="Quetta Foods" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                        <img src="logo9.jpg" alt="Multan Kitchen" class="client-logo">
+                                        <img src="assets/images/index/index logos/logo9.jpg" alt="Multan Kitchen" class="client-logo">
                                     </div>
                                 </div>
                             </div>
@@ -899,32 +977,32 @@
                             <div class="row justify-content-center">
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                      <img src="logo2.jpg" alt="Crave Corner" class="client-logo">  
+                                      <img src="assets/images/index/index logos/logo2.jpg" alt="Crave Corner" class="client-logo">  
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                       <img src="log5o.jpg" alt="Food" class="client-logo">
+                                       <img src="assets/images/index/index logos/log5o.jpg" alt="Food" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                        <img src="logo10.jpg" alt="Sufi" class="client-logo">
+                                        <img src="assets/images/index/index logos/logo10.jpg" alt="Sufi" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                       <img src="logo7.jpg" alt="kharachi baitak" class="client-logo">
+                                       <img src="assets/images/index/index logos/logo7.jpg" alt="kharachi baitak" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                      <img src="logo.jpg" alt="Deyrana Cafe" class="client-logo">
+                                      <img src="assets/images/index/index logos/logo.jpg" alt="Deyrana Cafe" class="client-logo">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-4 col-lg-2">
                                     <div class="client-logo-box">
-                                      <img src="Logo15.jpeg" alt="Ifood" class="client-logo">
+                                      <img src="assets/images/index/index logos/Logo15.jpeg" alt="Ifood" class="client-logo">
                                     </div>
                                 </div>
                             </div>
@@ -949,7 +1027,7 @@
     <section class="py-5 bg-white">
         <div class="container">
             <div class="rating-animation-container" data-aos="fade-up">
-                <div class="rating-number" id="ratingCounter">200+</div>
+                <div class="rating-number" id="ratingCounter">700+</div>
                 <div class="rating-description">Restaurants using our POS system across Pakistan</div>
             </div>
         </div>
@@ -1034,7 +1112,7 @@
             <div class="row align-items-center">
                 <!-- Image on left side -->
                 <div class="col-lg-5 mb-4 mb-lg-0" data-aos="fade-right">
-                    <img src="Buisness growth.jpg" 
+                    <img src="assets/images/index/Buisness growth.jpg" 
                          alt="POS System Development" 
                          class="img-fluid rounded"
                          style="height:500px; object-fit: cover;">
@@ -1102,21 +1180,21 @@
             <div class="row equal-height-cards">
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="interface-card card-equal-height">
-                        <img src="777.webp" class="img-fluid rounded mb-3" alt="POS Dashboard">
+                        <img src="assets/images/index/POS Interface 1.webp" class="img-fluid rounded mb-3" alt="POS Dashboard">
                         <h4>Real-time Analytics</h4>
                         <p>Comprehensive dashboard showing sales, inventory, and customer data in real-time with intuitive visualizations and performance metrics.</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="interface-card card-equal-height">
-                        <img src="table-removebg-preview.png" class="img-fluid rounded mb-3" alt="Order Management">
+                        <img src="assets/images/index/POS Interface2.png" class="img-fluid rounded mb-3" alt="Order Management">
                         <h4>Table Management</h4>
                         <p>Intuitive interface for managing tables, orders, and payments efficiently with drag-and-drop functionality and real-time updates.</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="interface-card card-equal-height">
-                        <img src="REport.png" class="img-fluid rounded mb-3" alt="Reporting Interface">
+                        <img src="assets/images/index/POS Interface 3.png" class="img-fluid rounded mb-3" alt="Reporting Interface">
                         <h4>Advanced Reporting</h4>
                         <p>Detailed reports and analytics to help you make data-driven business decisions with customizable dashboards and export options.</p>
                     </div>
@@ -1134,7 +1212,7 @@
             </div>
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                    <img src="Gemini_Generated_Image_evp5wsevp5wsevp5.png" alt="POS Hardware" class="img-fluid rounded shadow">
+                    <img src="assets/images/index/POS hardware.png" alt="POS Hardware" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <h3>Hardware Packages</h3>
@@ -1150,7 +1228,7 @@
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0" data-aos="fade-left">
-                    <img src="unnamed (2).png" 
+                    <img src="assets/images/index/POS software.png" 
                          alt="Software Services" 
                          class="img-fluid rounded shadow">
 
@@ -1440,7 +1518,7 @@
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0 fade-in">
                     <div class="d-flex align-items-center mb-4">
-                        <img src="logo copy.jpg" alt="Flow POS Logo" class="footer-logo">
+                        <img src="assets/images/shared/logo copy.jpg" alt="Flow POS Logo" class="footer-logo">
                         <h4 class="m-0" style="color: white;">Flow POS</h4>
                     </div>
                     
@@ -1458,6 +1536,8 @@
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="btn btn-outline-light btn-sm"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://wa.me/923016645866" target="_blank" class="btn btn-outline-light btn-sm" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:info@flowtechpos.online" class="btn btn-outline-light btn-sm" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
 
@@ -1506,7 +1586,7 @@
 
             <div class="row">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="small mb-0">© 2021 Flow POS. All rights reserved.</p>
+                    <p class="small mb-0">© 2015 Flow POS. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <p class="small mb-0">Made with <i class="fas fa-heart text-danger"></i> for restaurants</p>
@@ -1579,7 +1659,7 @@ function animateCounters() {
             setTimeout(animateCounters, 1);
         } else {
             // Add "+" sign after animation completes for the first counter (restaurants)
-            if(counter.getAttribute('data-target') === '200') {
+            if(counter.getAttribute('data-target') === '500') {
                 counter.innerText = target + '+';
             } else {
                 counter.innerText = target;
@@ -1706,5 +1786,10 @@ window.addEventListener('load', () => {
             });
         });
     </script>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923016645866" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 </body>
 </html>
