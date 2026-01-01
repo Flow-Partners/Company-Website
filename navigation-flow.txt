@@ -1,0 +1,52 @@
+# Flow POS Interactive Demo Navigation Flow Configuration
+# ============================================================
+# This file defines the navigation flow for the interactive demo.
+# Format: Each screen definition starts with "SCREEN:" followed by screen data
+# Clickable areas are defined with "CLICKABLE_AREA:" lines
+# 
+# Screen Format: SCREEN:SCREEN_ID|IMAGE_PATH|SCREEN_TITLE|DESCRIPTION
+# Clickable Area Format: CLICKABLE_AREA:X_PERCENT|Y_PERCENT|WIDTH_PERCENT|HEIGHT_PERCENT|NEXT_SCREEN_ID|LABEL
+# 
+# Coordinates are percentage-based (0-100) for responsive design
+# Lines starting with # are comments and ignored
+# Empty lines are ignored
+# ============================================================
+
+# Screen 1: Login Screen
+SCREEN:login|assets/images/about/Flow POS/login.jpeg|Secure Login System|PIN-based authentication interface with secure access
+CLICKABLE_AREA:40|65|35|28|main_menu|Login PIN Entry Area
+CLICKABLE_AREA:85|10|12|8|login|Exit Button
+
+# Screen 2: Main Menu Dashboard
+SCREEN:main_menu|assets/images/about/Flow POS/main menu.jpeg|Main Dashboard|Central command center for all Flow POS operations
+CLICKABLE_AREA:25|42|22|18|order_bill|POS Module
+CLICKABLE_AREA:50|42|22|18|search_vendor|Vendor Management
+CLICKABLE_AREA:75|42|22|18|shop_details|Expense Management
+CLICKABLE_AREA:25|65|22|18|shop_report|Reports Module
+CLICKABLE_AREA:50|65|22|18|main_menu|Accounts Module
+CLICKABLE_AREA:75|65|22|18|main_menu|Warehouse Module
+CLICKABLE_AREA:90|92|8|6|login|Logout Button
+
+# Screen 3: Order Bill Screen
+SCREEN:order_bill|assets/images/about/Flow POS/order bill.jpeg|Order Management|Complete order view with itemized list and payment options
+CLICKABLE_AREA:35|88|22|10|print_bill|Settle Button
+CLICKABLE_AREA:12|88|18|10|main_menu|Back Button
+CLICKABLE_AREA:60|88|18|10|order_bill|Close Button
+
+# Screen 4: Print Bill / Payment Processing
+SCREEN:print_bill|assets/images/about/Flow POS/print bill.jpeg|Payment Processing|Advanced payment methods with multiple payment options
+CLICKABLE_AREA:85|92|12|7|main_menu|Close Button
+CLICKABLE_AREA:10|92|15|7|order_bill|Back Button
+
+# Screen 5: Search Vendor
+SCREEN:search_vendor|assets/images/about/Flow POS/search vender.jpeg|Vendor Management|Search and manage vendor accounts and transactions
+CLICKABLE_AREA:88|92|10|7|main_menu|Back Button
+
+# Screen 6: Shop Details / Expense Management
+SCREEN:shop_details|assets/images/about/Flow POS/shop details.jpeg|Expense Management|Track and categorize all business expenditures
+CLICKABLE_AREA:88|92|10|7|main_menu|Back Button
+
+# Screen 7: Shop Report / Work Period Report
+SCREEN:shop_report|assets/images/about/Flow POS/shop.jpeg|Work Period Report|Comprehensive sales analytics and reporting
+CLICKABLE_AREA:88|92|10|7|main_menu|Back Button
+

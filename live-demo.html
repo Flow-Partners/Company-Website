@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Interactive Demo - Flow POS System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #045476;
+            --secondary-color: #5E9FAE;
+            --accent-color: #045476;
+            --dark-color: #34495e;
+            --text-color: #2c3e50;
+            --light-color: #ecf0f1;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(4, 84, 118, 0.05) 0%, rgba(94, 159, 174, 0.05) 100%);
+        }
+        
+        /* Prevent media elements from causing overflow */
+        img, video, iframe, embed, object {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
+            font-size: 2.2rem;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        /* Interactive Demo Section - Full Screen */
+        .interactive-demo-section {
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, rgba(4, 84, 118, 0.05) 0%, rgba(94, 159, 174, 0.05) 100%);
+        }
+
+        .demo-container {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
+        .demo-header h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .demo-header p {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+        
+        /* Close button */
+        .close-demo-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(4, 84, 118, 0.3);
+        }
+        
+        .close-demo-btn:hover {
+            background: #03415e;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(4, 84, 118, 0.5);
+        }
+
+        .demo-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            flex-wrap: wrap;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .demo-nav-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(4, 84, 118, 0.3);
+        }
+
+        .demo-nav-btn:hover:not(:disabled) {
+            background: #03415e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(4, 84, 118, 0.4);
+        }
+
+        .demo-nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .demo-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .breadcrumb-item {
+            padding: 8px 16px;
+            background: white;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb-item.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .breadcrumb-separator {
+            color: #999;
+            font-size: 1.2rem;
+        }
+
+        .demo-screen-wrapper {
+            position: relative;
+            width: 100%;
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+            box-sizing: border-box;
+        }
+
+        .demo-screen-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .demo-screen-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: block;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            position: relative;
+            z-index: 1;
+            margin: auto;
+        }
+        
+        /* Fullscreen mode styles */
+        .demo-screen-wrapper:fullscreen,
+        .demo-screen-wrapper:-webkit-full-screen,
+        .demo-screen-wrapper:-moz-full-screen,
+        .demo-screen-wrapper:-ms-fullscreen {
+            background: #000;
+            padding: 20px;
+        }
+        
+        .demo-screen-wrapper:fullscreen .demo-screen-container,
+        .demo-screen-wrapper:-webkit-full-screen .demo-screen-container,
+        .demo-screen-wrapper:-moz-full-screen .demo-screen-container,
+        .demo-screen-wrapper:-ms-fullscreen .demo-screen-container {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .demo-screen-wrapper:fullscreen .demo-screen-image,
+        .demo-screen-wrapper:-webkit-full-screen .demo-screen-image,
+        .demo-screen-wrapper:-moz-full-screen .demo-screen-image,
+        .demo-screen-wrapper:-ms-fullscreen .demo-screen-image {
+            max-width: 100vw;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+        }
+
+        .demo-screen-image.fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        .demo-screen-image.fade-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .clickable-areas-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .clickable-area {
+            position: absolute;
+            border: 3px solid rgba(4, 84, 118, 0);
+            background: rgba(4, 84, 118, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeInHotspot 0.5s ease forwards;
+        }
+
+        .clickable-area:hover {
+            border-color: var(--primary-color);
+            background: rgba(4, 84, 118, 0.2);
+            box-shadow: 0 0 0 4px rgba(4, 84, 118, 0.1);
+            transform: scale(1.02);
+            opacity: 1 !important;
+        }
+
+        .clickable-area-label {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .clickable-area:hover .clickable-area-label {
+            opacity: 1;
+            transform: translateY(-45px);
+        }
+
+        .clickable-area-label::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--primary-color);
+        }
+
+        @keyframes fadeInHotspot {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.6;
+            }
+        }
+
+        .demo-info {
+            background: linear-gradient(135deg, rgba(4, 84, 118, 0.05) 0%, rgba(94, 159, 174, 0.05) 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .demo-info h3 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .demo-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            border-radius: 12px;
+        }
+
+        .loading-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 32px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #25d366;
+            opacity: 0.7;
+            z-index: -1;
+            animation: ripple 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            transform: scale(1.15);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            z-index: 1;
+            position: relative;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6), 0 0 0 10px rgba(37, 211, 102, 0.1);
+            }
+            100% {
+                box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .demo-container {
+                padding: 20px;
+            }
+
+            .demo-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .demo-header p {
+                font-size: 1rem;
+            }
+
+            .demo-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .demo-nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .demo-breadcrumb {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .breadcrumb-item {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+
+            .demo-screen-wrapper {
+                padding: 15px;
+                min-height: 0;
+            }
+            
+            .close-demo-btn {
+                top: 10px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .demo-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .demo-header p {
+                font-size: 0.9rem;
+            }
+            
+            .demo-info h3 {
+                font-size: 1.2rem;
+            }
+            
+            .demo-info h3 {
+                font-size: 1.2rem;
+            }
+
+            .demo-info p {
+                font-size: 0.9rem;
+            }
+
+            .clickable-area-label {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+            }
+
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Interactive Demo Section - Full Screen -->
+    <section class="interactive-demo-section">
+        <button class="close-demo-btn" onclick="window.location.href='index.html'" title="Close Demo">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="demo-container">
+            <div class="demo-header">
+                <h2 class="section-title">Interactive Live Demo</h2>
+                <p class="lead">Click on the highlighted areas to navigate through the Flow POS system and experience the real interface flow</p>
+            </div>
+                <!-- Navigation Controls -->
+                <div class="demo-controls">
+                    <div style="display: flex; gap: 10px;">
+                        <button id="backBtn" class="demo-nav-btn" title="Go Back" disabled>
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button id="resetBtn" class="demo-nav-btn" title="Start Over">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                        <button id="fullscreenBtn" class="demo-nav-btn" title="Fullscreen">
+                            <i class="fas fa-expand"></i> Fullscreen
+                        </button>
+                    </div>
+                    <div class="demo-breadcrumb" id="breadcrumb">
+                        <span class="breadcrumb-item active">Login</span>
+                    </div>
+                </div>
+                
+                <!-- Demo Screen Area -->
+                <div class="demo-screen-wrapper">
+                    <div class="demo-screen-container" id="demoScreen">
+                        <div class="loading-overlay" id="loadingOverlay">
+                            <div class="spinner"></div>
+                        </div>
+                        <img id="currentScreenImg" src="assets/images/about/Flow POS/login.jpeg" alt="Demo Screen" class="demo-screen-image fade-in">
+                        <div id="clickableAreas" class="clickable-areas-layer"></div>
+                    </div>
+                </div>
+                
+                <!-- Screen Info -->
+                <div class="demo-info" id="demoInfo">
+                    <h3 id="screenTitle">Secure Login System</h3>
+                    <p id="screenDescription">Click on interactive elements highlighted on the screen to navigate through the system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Interactive Demo JavaScript -->
+    <script>
+        /**
+         * Graph-Based Navigation System for Interactive Demo
+         * Algorithm: Adjacency List Graph Structure
+         * 
+         * Time Complexity:
+         * - Navigation lookup: O(1) - Direct hash map access
+         * - Parsing: O(n) where n = number of lines in config file
+         * - Memory: O(V + E) where V = screens, E = clickable areas
+         * 
+         * This algorithm is highly scalable and efficient, supporting
+         * hundreds of screens with multiple clickable areas each.
+         */
+        
+        class InteractiveDemoNavigator {
+            constructor() {
+                // Graph structure: screenId -> {screenData, clickableAreas[]}
+                this.navigationGraph = new Map();
+                this.currentScreenId = 'login';
+                this.navigationHistory = [];
+                this.screenData = {};
+                
+                // DOM elements
+                this.currentScreenImg = document.getElementById('currentScreenImg');
+                this.clickableAreasLayer = document.getElementById('clickableAreas');
+                this.screenTitle = document.getElementById('screenTitle');
+                this.screenDescription = document.getElementById('screenDescription');
+                this.backBtn = document.getElementById('backBtn');
+                this.resetBtn = document.getElementById('resetBtn');
+                this.fullscreenBtn = document.getElementById('fullscreenBtn');
+                this.breadcrumb = document.getElementById('breadcrumb');
+                this.loadingOverlay = document.getElementById('loadingOverlay');
+                this.demoScreenContainer = document.getElementById('demoScreen');
+                this.demoScreenWrapper = document.querySelector('.demo-screen-wrapper');
+                
+                // Initialize
+                this.loadNavigationFlow();
+            }
+            
+            /**
+             * Load and parse navigation flow configuration file
+             * Builds the adjacency list graph structure
+             */
+            async loadNavigationFlow() {
+                try {
+                    const response = await fetch('navigation-flow.txt');
+                    const text = await response.text();
+                    this.parseNavigationFlow(text);
+                    this.initializeDemo();
+                } catch (error) {
+                    console.error('Error loading navigation flow:', error);
+                    alert('Failed to load demo configuration. Please refresh the page.');
+                }
+            }
+            
+            /**
+             * Parse navigation flow text file
+             * Creates graph nodes (screens) and edges (clickable areas)
+             */
+            parseNavigationFlow(text) {
+                const lines = text.split('\n');
+                let currentScreenId = null;
+                let currentScreenData = null;
+                
+                for (let line of lines) {
+                    line = line.trim();
+                    
+                    // Skip comments and empty lines
+                    if (!line || line.startsWith('#')) continue;
+                    
+                    // Parse screen definition
+                    if (line.startsWith('SCREEN:')) {
+                        const parts = line.substring(7).split('|');
+                        if (parts.length >= 4) {
+                            currentScreenId = parts[0];
+                            currentScreenData = {
+                                id: currentScreenId,
+                                imagePath: parts[1],
+                                title: parts[2],
+                                description: parts[3],
+                                clickableAreas: []
+                            };
+                            this.navigationGraph.set(currentScreenId, currentScreenData);
+                            this.screenData[currentScreenId] = {
+                                title: parts[2],
+                                description: parts[3]
+                            };
+                        }
+                    }
+                    // Parse clickable area definition
+                    else if (line.startsWith('CLICKABLE_AREA:') && currentScreenData) {
+                        const parts = line.substring(15).split('|');
+                        if (parts.length >= 6) {
+                            currentScreenData.clickableAreas.push({
+                                x: parseFloat(parts[0]),
+                                y: parseFloat(parts[1]),
+                                width: parseFloat(parts[2]),
+                                height: parseFloat(parts[3]),
+                                nextScreenId: parts[4],
+                                label: parts[5]
+                            });
+                        }
+                    }
+                }
+            }
+            
+            /**
+             * Initialize the demo with the starting screen
+             */
+            initializeDemo() {
+                this.navigateToScreen('login', false);
+                this.setupEventListeners();
+            }
+            
+            /**
+             * Setup event listeners for navigation controls
+             */
+            setupEventListeners() {
+                this.backBtn.addEventListener('click', () => this.goBack());
+                this.resetBtn.addEventListener('click', () => this.resetDemo());
+                this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+                
+                // Listen for fullscreen changes
+                document.addEventListener('fullscreenchange', () => {
+                    this.updateFullscreenButton();
+                    // Recalculate clickable areas after fullscreen change
+                    const currentScreen = this.navigationGraph.get(this.currentScreenId);
+                    if (currentScreen) {
+                        setTimeout(() => this.renderClickableAreas(currentScreen), 100);
+                    }
+                });
+                document.addEventListener('webkitfullscreenchange', () => {
+                    this.updateFullscreenButton();
+                    const currentScreen = this.navigationGraph.get(this.currentScreenId);
+                    if (currentScreen) {
+                        setTimeout(() => this.renderClickableAreas(currentScreen), 100);
+                    }
+                });
+                document.addEventListener('mozfullscreenchange', () => {
+                    this.updateFullscreenButton();
+                    const currentScreen = this.navigationGraph.get(this.currentScreenId);
+                    if (currentScreen) {
+                        setTimeout(() => this.renderClickableAreas(currentScreen), 100);
+                    }
+                });
+                document.addEventListener('MSFullscreenChange', () => {
+                    this.updateFullscreenButton();
+                    const currentScreen = this.navigationGraph.get(this.currentScreenId);
+                    if (currentScreen) {
+                        setTimeout(() => this.renderClickableAreas(currentScreen), 100);
+                    }
+                });
+                
+                // Recalculate clickable areas on window resize
+                let resizeTimeout;
+                window.addEventListener('resize', () => {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        const currentScreen = this.navigationGraph.get(this.currentScreenId);
+                        if (currentScreen) {
+                            this.renderClickableAreas(currentScreen);
+                        }
+                    }, 250);
+                });
+            }
+            
+            /**
+             * Toggle fullscreen mode
+             */
+            toggleFullscreen() {
+                const wrapper = this.demoScreenWrapper;
+                
+                if (!document.fullscreenElement && 
+                    !document.webkitFullscreenElement && 
+                    !document.mozFullScreenElement && 
+                    !document.msFullscreenElement) {
+                    // Enter fullscreen
+                    if (wrapper.requestFullscreen) {
+                        wrapper.requestFullscreen();
+                    } else if (wrapper.webkitRequestFullscreen) {
+                        wrapper.webkitRequestFullscreen();
+                    } else if (wrapper.mozRequestFullScreen) {
+                        wrapper.mozRequestFullScreen();
+                    } else if (wrapper.msRequestFullscreen) {
+                        wrapper.msRequestFullscreen();
+                    }
+                } else {
+                    // Exit fullscreen
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.msExitFullscreen) {
+                        document.msExitFullscreen();
+                    }
+                }
+            }
+            
+            /**
+             * Update fullscreen button icon based on state
+             */
+            updateFullscreenButton() {
+                const isFullscreen = !!(document.fullscreenElement || 
+                                       document.webkitFullscreenElement || 
+                                       document.mozFullScreenElement || 
+                                       document.msFullscreenElement);
+                
+                const icon = this.fullscreenBtn.querySelector('i');
+                if (isFullscreen) {
+                    icon.className = 'fas fa-compress';
+                    this.fullscreenBtn.title = 'Exit Fullscreen';
+                } else {
+                    icon.className = 'fas fa-expand';
+                    this.fullscreenBtn.title = 'Fullscreen';
+                }
+            }
+            
+            /**
+             * Navigate to a specific screen
+             * @param {string} screenId - Target screen ID
+             * @param {boolean} addToHistory - Whether to add to navigation history
+             */
+            navigateToScreen(screenId, addToHistory = true) {
+                const screen = this.navigationGraph.get(screenId);
+                if (!screen) {
+                    console.error('Screen not found:', screenId);
+                    return;
+                }
+                
+                // Add to history if needed
+                if (addToHistory && this.currentScreenId !== screenId) {
+                    this.navigationHistory.push(this.currentScreenId);
+                    this.backBtn.disabled = false;
+                }
+                
+                // Update current screen
+                this.currentScreenId = screenId;
+                
+                // Show loading
+                this.showLoading();
+                
+                // Update image with fade transition
+                this.currentScreenImg.classList.add('fade-out');
+                
+                setTimeout(() => {
+                    this.currentScreenImg.src = screen.imagePath;
+                    this.currentScreenImg.alt = screen.title;
+                    this.currentScreenImg.classList.remove('fade-out');
+                    this.currentScreenImg.classList.add('fade-in');
+                    
+                    // Wait for image to load
+                    this.currentScreenImg.onload = () => {
+                        this.hideLoading();
+                        this.renderClickableAreas(screen);
+                        this.updateScreenInfo(screen);
+                        this.updateBreadcrumb(screenId);
+                        
+                        setTimeout(() => {
+                            this.currentScreenImg.classList.remove('fade-in');
+                        }, 400);
+                    };
+                }, 200);
+            }
+            
+            /**
+             * Render clickable areas on the current screen
+             * Positions areas exactly over the actual buttons on the image
+             */
+            renderClickableAreas(screen) {
+                // Clear existing areas
+                this.clickableAreasLayer.innerHTML = '';
+                
+                    // Wait for image to be fully rendered and positioned
+                // Use requestAnimationFrame to ensure image is fully rendered
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        // Get the actual rendered image dimensions and position
+                        const imgRect = this.currentScreenImg.getBoundingClientRect();
+                        const containerRect = this.demoScreenContainer.getBoundingClientRect();
+                        
+                        // Calculate the offset of the image within the container
+                        const imgOffsetX = imgRect.left - containerRect.left;
+                        const imgOffsetY = imgRect.top - containerRect.top;
+                        
+                        // Get the actual natural/displayed dimensions of the image
+                        const imgDisplayWidth = imgRect.width;
+                        const imgDisplayHeight = imgRect.height;
+                        
+                        // Only proceed if image has valid dimensions
+                        if (imgDisplayWidth === 0 || imgDisplayHeight === 0) {
+                            console.warn('Image dimensions are zero, retrying...');
+                            setTimeout(() => this.renderClickableAreas(screen), 200);
+                            return;
+                        }
+                        
+                        // Calculate scale factors (percentage to pixels)
+                        const scaleX = imgDisplayWidth / 100;
+                        const scaleY = imgDisplayHeight / 100;
+                        
+                        // Position the clickable areas layer to match the image exactly
+                        this.clickableAreasLayer.style.left = imgOffsetX + 'px';
+                        this.clickableAreasLayer.style.top = imgOffsetY + 'px';
+                        this.clickableAreasLayer.style.width = imgDisplayWidth + 'px';
+                        this.clickableAreasLayer.style.height = imgDisplayHeight + 'px';
+                        
+                        // Create clickable areas for each defined area
+                        screen.clickableAreas.forEach((area, index) => {
+                            const areaElement = document.createElement('div');
+                            areaElement.className = 'clickable-area';
+                            
+                            // Calculate position relative to the image (not container)
+                            areaElement.style.left = (area.x * scaleX) + 'px';
+                            areaElement.style.top = (area.y * scaleY) + 'px';
+                            areaElement.style.width = (area.width * scaleX) + 'px';
+                            areaElement.style.height = (area.height * scaleY) + 'px';
+                            areaElement.style.animationDelay = (index * 0.1) + 's';
+                            
+                            // Add label
+                            const label = document.createElement('div');
+                            label.className = 'clickable-area-label';
+                            label.textContent = area.label;
+                            areaElement.appendChild(label);
+                            
+                            // Add click handler
+                            areaElement.addEventListener('click', () => {
+                                this.navigateToScreen(area.nextScreenId, true);
+                            });
+                            
+                            this.clickableAreasLayer.appendChild(areaElement);
+                        });
+                    });
+                });
+            }
+            
+            /**
+             * Update screen information display
+             */
+            updateScreenInfo(screen) {
+                this.screenTitle.textContent = screen.title;
+                this.screenDescription.textContent = screen.description;
+            }
+            
+            /**
+             * Update breadcrumb navigation
+             */
+            updateBreadcrumb(screenId) {
+                // Simple breadcrumb - can be enhanced to show full path
+                this.breadcrumb.innerHTML = `
+                    <span class="breadcrumb-item ${screenId === 'login' ? 'active' : ''}">Login</span>
+                    ${screenId !== 'login' ? `<span class="breadcrumb-separator">→</span><span class="breadcrumb-item active">${this.screenData[screenId].title}</span>` : ''}
+                `;
+            }
+            
+            /**
+             * Navigate back in history
+             */
+            goBack() {
+                if (this.navigationHistory.length > 0) {
+                    const previousScreen = this.navigationHistory.pop();
+                    this.navigateToScreen(previousScreen, false);
+                    
+                    if (this.navigationHistory.length === 0) {
+                        this.backBtn.disabled = true;
+                    }
+                }
+            }
+            
+            /**
+             * Reset demo to initial state
+             */
+            resetDemo() {
+                this.navigationHistory = [];
+                this.backBtn.disabled = true;
+                this.navigateToScreen('login', false);
+            }
+            
+            /**
+             * Show loading overlay
+             */
+            showLoading() {
+                this.loadingOverlay.classList.add('active');
+            }
+            
+            /**
+             * Hide loading overlay
+             */
+            hideLoading() {
+                this.loadingOverlay.classList.remove('active');
+            }
+        }
+        
+        // Initialize the demo when DOM is ready
+        let demoNavigator;
+        document.addEventListener('DOMContentLoaded', function() {
+            demoNavigator = new InteractiveDemoNavigator();
+        });
+    </script>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923016645866" target="_blank" class="whatsapp-float" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+
+</html>
+
