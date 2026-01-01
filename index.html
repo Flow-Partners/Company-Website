@@ -28,11 +28,13 @@
             margin-right: 10px;
         }
         
-        body {
+        html, body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: white;
             color: #333;
             overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
         }
         
         /* Header Styles */
@@ -795,20 +797,24 @@
                 height: 3px;
             }
             
-            .client-logo-carousel .carousel-control-prev {
-                left: -10px;
-            }
-
-            .client-logo-carousel .carousel-control-next {
-                right: -10px;
-            }
-
-            .testimonials-carousel .carousel-control-prev {
-                left: -10px;
-            }
-
+            /* Hide carousel controls on mobile to prevent overflow */
+            .client-logo-carousel .carousel-control-prev,
+            .client-logo-carousel .carousel-control-next,
+            .testimonials-carousel .carousel-control-prev,
             .testimonials-carousel .carousel-control-next {
-                right: -10px;
+                display: none;
+            }
+            
+            /* Hide floating elements on mobile */
+            .floating-element {
+                display: none;
+            }
+            
+            /* Ensure containers don't overflow */
+            .container, .container-fluid {
+                max-width: 100%;
+                padding-left: 15px;
+                padding-right: 15px;
             }
             
             .hero-section {

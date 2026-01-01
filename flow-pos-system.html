@@ -19,10 +19,20 @@
             --light-color: #ecf0f1;
         }
 
+        html {
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--text-color);
             overflow-x: hidden;
+        }
+        
+        /* Prevent media elements from causing overflow */
+        img, video, iframe, embed, object {
+            max-width: 100%;
+            height: auto;
         }
 
         /* Header Styles */
@@ -412,6 +422,11 @@
                 bottom: 20px;
                 right: 20px;
                 font-size: 28px;
+            }
+            
+            img, video, iframe, embed, object {
+                max-width: 100%;
+                height: auto;
             }
         }
     </style>
