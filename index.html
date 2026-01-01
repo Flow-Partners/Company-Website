@@ -28,11 +28,13 @@
             margin-right: 10px;
         }
         
-        body {
+        html, body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: white;
             color: #333;
             overflow-x: hidden;
+            max-width: 100%;
+            width: 100%;
         }
         
         /* Header Styles */
@@ -795,20 +797,24 @@
                 height: 3px;
             }
             
-            .client-logo-carousel .carousel-control-prev {
-                left: -10px;
-            }
-
-            .client-logo-carousel .carousel-control-next {
-                right: -10px;
-            }
-
-            .testimonials-carousel .carousel-control-prev {
-                left: -10px;
-            }
-
+            /* Hide carousel controls on mobile to prevent overflow */
+            .client-logo-carousel .carousel-control-prev,
+            .client-logo-carousel .carousel-control-next,
+            .testimonials-carousel .carousel-control-prev,
             .testimonials-carousel .carousel-control-next {
-                right: -10px;
+                display: none;
+            }
+            
+            /* Hide floating elements on mobile */
+            .floating-element {
+                display: none;
+            }
+            
+            /* Ensure containers don't overflow */
+            .container, .container-fluid {
+                max-width: 100%;
+                padding-left: 15px;
+                padding-right: 15px;
             }
             
             .hero-section {
@@ -890,6 +896,11 @@
                     <p class="lead">Pioneering restaurant technology solutions for nearly a decade</p>
                     <p>Flow POS has been at the forefront of restaurant technology innovation since our establishment in 2015. We've spent years understanding the unique needs of Pakistani restaurants and developing solutions that address local challenges.</p>
                     <p>Our journey began with a simple mission: to create a POS system that works seamlessly in Pakistan's unique business environment, with features like load-shedding resilience, Urdu language support, and local payment integrations.</p>
+                    <div class="mt-4">
+                        <a href="flow-pos-system.html" class="btn btn-primary btn-lg" style="background-color: var(--navy); border-color: var(--navy);">
+                            <i class="fas fa-desktop me-2"></i>Explore Flow POS System
+                        </a>
+                    </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left" style="position: relative;">
                     <img src="assets/images/index/landing2 index.jpg" alt="Software Development Team" class="img-fluid rounded shadow" style="height:500px; object-fit:contain;">
