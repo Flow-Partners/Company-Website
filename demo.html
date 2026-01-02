@@ -387,16 +387,26 @@
                 width: 55px;
                 height: 55px;
                 bottom: 20px;
-                right: 20px;
+                right: 30px !important; /* More space from right corner */
                 font-size: 28px;
             }
             
             .demo-float {
                 width: 55px;
                 height: 55px;
-                bottom: 90px;
-                left: 20px;
+                bottom: 90px; /* Adjusted for mobile */
+                right: 30px !important; /* More space from right corner */
                 font-size: 24px;
+            }
+            
+            .demo-float-text {
+                font-size: 0.6rem;
+                bottom: 65px;
+                padding: 5px 10px;
+            }
+            
+            .demo-float i {
+                font-size: 1.5rem;
             }
         }
         
@@ -405,13 +415,11 @@
             position: fixed;
             width: 60px;
             height: 60px;
-            bottom: 30px;
-            left: 30px;
+            bottom: 100px; /* Positioned above WhatsApp button */
+            right: 30px; /* Changed from left to right */
             background: linear-gradient(135deg, var(--primary-color) 0%, #033a52 100%);
             color: white;
             border-radius: 50%;
-            text-align: center;
-            font-size: 28px;
             box-shadow: 0 4px 12px rgba(4, 84, 118, 0.4);
             z-index: 1000;
             display: flex;
@@ -443,6 +451,61 @@
         .demo-float i {
             z-index: 1;
             position: relative;
+            font-size: 1.8rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .demo-float-text {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            white-space: nowrap;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9), 0 0 8px rgba(4, 84, 118, 0.3);
+            letter-spacing: 1px;
+            opacity: 1;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: 0 3px 10px rgba(4, 84, 118, 0.2), 0 0 0 1px rgba(4, 84, 118, 0.1);
+            animation: textPulse 2s ease-in-out infinite, textSlide 0.5s ease-out;
+        }
+        
+        .demo-float:hover .demo-float-text {
+            color: var(--primary-color);
+            opacity: 1;
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 5px 15px rgba(4, 84, 118, 0.3), 0 0 0 2px rgba(4, 84, 118, 0.15);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.95) 100%);
+        }
+        
+        @keyframes textPulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.05);
+                opacity: 0.95;
+            }
+        }
+        
+        @keyframes textSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
         }
         
         @keyframes pulse-demo {
@@ -828,7 +891,9 @@
     </script>
     
     <!-- Floating Live Demo Button -->
+    <!-- Floating Live Demo Button -->
     <a href="live-demo.html" class="demo-float" title="Try Live Demo">
+        <span class="demo-float-text">Live Demo</span>
         <i class="fas fa-play-circle"></i>
     </a>
     

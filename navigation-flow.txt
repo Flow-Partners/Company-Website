@@ -12,41 +12,37 @@
 # Empty lines are ignored
 # ============================================================
 
+
+# 1. UNDERSTANDING THE COORDINATE SYSTEM:
+#    - X_PERCENT: Horizontal position (0 = left edge, 100 = right edge)
+#    - Y_PERCENT: Vertical position (0 = top edge, 100 = bottom edge)
+#    - WIDTH_PERCENT: Button width as percentage of image width
+#    - HEIGHT_PERCENT: Button height as percentage of image height
+
 # Screen 1: Login Screen
 SCREEN:login|assets/images/about/Flow POS/login.jpeg|Secure Login System|PIN-based authentication interface with secure access
-CLICKABLE_AREA:40|65|35|28|main_menu|Login PIN Entry Area
-CLICKABLE_AREA:85|10|12|8|login|Exit Button
+CLICKABLE_AREA:79|60|10|12|main_menu|Login PIN Entry Area
+CLICKABLE_AREA:70|76|10|10|login|Exit Button
+
 
 # Screen 2: Main Menu Dashboard
 SCREEN:main_menu|assets/images/about/Flow POS/main menu.jpeg|Main Dashboard|Central command center for all Flow POS operations
-CLICKABLE_AREA:25|42|22|18|order_bill|POS Module
-CLICKABLE_AREA:50|42|22|18|search_vendor|Vendor Management
-CLICKABLE_AREA:75|42|22|18|shop_details|Expense Management
-CLICKABLE_AREA:25|65|22|18|shop_report|Reports Module
-CLICKABLE_AREA:50|65|22|18|main_menu|Accounts Module
-CLICKABLE_AREA:75|65|22|18|main_menu|Warehouse Module
-CLICKABLE_AREA:90|92|8|6|login|Logout Button
+CLICKABLE_AREA:35|9|30|20|order_bill|POS Module
+CLICKABLE_AREA:67|32|30|20|search_vendor|Vendor Management
+CLICKABLE_AREA:2.5|51|30|20|shop_details|Expense Management
+CLICKABLE_AREA:36|75|30|18|login|Logout Button
 
 # Screen 3: Order Bill Screen
 SCREEN:order_bill|assets/images/about/Flow POS/order bill.jpeg|Order Management|Complete order view with itemized list and payment options
-CLICKABLE_AREA:35|88|22|10|print_bill|Settle Button
-CLICKABLE_AREA:12|88|18|10|main_menu|Back Button
-CLICKABLE_AREA:60|88|18|10|order_bill|Close Button
+CLICKABLE_AREA:10|78|17|8|print_bill|Settle Button
+CLICKABLE_AREA:10|86|35|9|main_menu|Back Button
+CLICKABLE_AREA:28|78|17|8|main_menu|Close Button
+
+
+# Screen 4: 
+
 
 # Screen 4: Print Bill / Payment Processing
 SCREEN:print_bill|assets/images/about/Flow POS/print bill.jpeg|Payment Processing|Advanced payment methods with multiple payment options
-CLICKABLE_AREA:85|92|12|7|main_menu|Close Button
-CLICKABLE_AREA:10|92|15|7|order_bill|Back Button
-
-# Screen 5: Search Vendor
-SCREEN:search_vendor|assets/images/about/Flow POS/search vender.jpeg|Vendor Management|Search and manage vendor accounts and transactions
-CLICKABLE_AREA:88|92|10|7|main_menu|Back Button
-
-# Screen 6: Shop Details / Expense Management
-SCREEN:shop_details|assets/images/about/Flow POS/shop details.jpeg|Expense Management|Track and categorize all business expenditures
-CLICKABLE_AREA:88|92|10|7|main_menu|Back Button
-
-# Screen 7: Shop Report / Work Period Report
-SCREEN:shop_report|assets/images/about/Flow POS/shop.jpeg|Work Period Report|Comprehensive sales analytics and reporting
-CLICKABLE_AREA:88|92|10|7|main_menu|Back Button
+CLICKABLE_AREA:85|85|15|11|main_menu|Close Button
 

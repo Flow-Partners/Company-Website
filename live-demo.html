@@ -81,7 +81,7 @@
             background: white;
             border-radius: 0;
             box-shadow: none;
-            padding: 20px;
+            padding: 12px;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -90,20 +90,21 @@
 
         .demo-header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             flex-shrink: 0;
         }
 
         .demo-header h2 {
             color: var(--primary-color);
             font-weight: 700;
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
 
         .demo-header p {
-            font-size: 1rem;
+            font-size: 0.85rem;
             color: var(--text-color);
+            opacity: 0.8;
         }
         
         /* Close button */
@@ -137,12 +138,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding: 15px;
+            margin-bottom: 10px;
+            padding: 10px 12px;
             background: #f8f9fa;
-            border-radius: 12px;
+            border-radius: 10px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
             flex-shrink: 0;
         }
 
@@ -150,15 +151,15 @@
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             box-shadow: 0 4px 12px rgba(4, 84, 118, 0.3);
         }
 
@@ -182,10 +183,10 @@
         }
 
         .breadcrumb-item {
-            padding: 8px 16px;
+            padding: 6px 12px;
             background: white;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--text-color);
             border: 2px solid #e0e0e0;
             transition: all 0.3s ease;
@@ -207,8 +208,8 @@
             width: 100%;
             background: #f5f5f5;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 8px;
+            margin-bottom: 10px;
             flex: 1;
             min-height: 0;
             display: flex;
@@ -232,18 +233,117 @@
         }
 
         .demo-screen-image {
-            max-width: 100%;
-            max-height: 100%;
+            max-width: 98%;
+            max-height: 98%;
             width: auto;
             height: auto;
             object-fit: contain;
-            border-radius: 12px;
+            border-radius: 10px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             display: block;
             transition: opacity 0.4s ease, transform 0.4s ease;
             position: relative;
             z-index: 1;
             margin: auto;
+        }
+        
+        /* Image Maximize Button */
+        .image-maximize-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, rgba(4, 84, 118, 0.95) 0%, rgba(3, 65, 94, 0.95) 100%);
+            color: white;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(4, 84, 118, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .image-maximize-btn:hover {
+            background: linear-gradient(135deg, rgba(4, 84, 118, 1) 0%, rgba(3, 65, 94, 1) 100%);
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(4, 84, 118, 0.6), 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Image Fullscreen Modal */
+        .image-fullscreen-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInModal 0.3s ease;
+        }
+        
+        .image-fullscreen-modal.active {
+            display: flex;
+        }
+        
+        .image-fullscreen-content {
+            position: relative;
+            width: 95vw;
+            height: 95vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-fullscreen-img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .image-fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .image-fullscreen-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
         
         /* Fullscreen mode styles */
@@ -295,8 +395,8 @@
 
         .clickable-area {
             position: absolute;
-            border: 3px solid rgba(4, 84, 118, 0);
-            background: rgba(4, 84, 118, 0.1);
+            border: 3px solid rgba(34, 197, 94, 0.6);
+            background: rgba(34, 197, 94, 0.15);
             border-radius: 8px;
             cursor: pointer;
             pointer-events: all;
@@ -304,20 +404,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
+            opacity: 0.7;
             animation: fadeInHotspot 0.5s ease forwards;
         }
 
         .clickable-area:hover {
-            border-color: var(--primary-color);
-            background: rgba(4, 84, 118, 0.2);
-            box-shadow: 0 0 0 4px rgba(4, 84, 118, 0.1);
+            border-color: rgba(34, 197, 94, 1);
+            background: rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
             transform: scale(1.02);
             opacity: 1 !important;
         }
 
         .clickable-area-label {
-            background: var(--primary-color);
+            background: rgba(34, 197, 94, 0.95);
             color: white;
             padding: 8px 16px;
             border-radius: 6px;
@@ -328,7 +428,7 @@
             transform: translateY(-10px);
             transition: all 0.3s ease;
             pointer-events: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
         }
 
         .clickable-area:hover .clickable-area-label {
@@ -346,7 +446,7 @@
             height: 0;
             border-left: 6px solid transparent;
             border-right: 6px solid transparent;
-            border-top: 6px solid var(--primary-color);
+            border-top: 6px solid rgba(34, 197, 94, 0.95);
         }
 
         @keyframes fadeInHotspot {
@@ -354,14 +454,14 @@
                 opacity: 0;
             }
             to {
-                opacity: 0.6;
+                opacity: 0.7;
             }
         }
 
         .demo-info {
             background: linear-gradient(135deg, rgba(4, 84, 118, 0.05) 0%, rgba(94, 159, 174, 0.05) 100%);
-            padding: 20px;
-            border-radius: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
             border-left: 4px solid var(--primary-color);
             flex-shrink: 0;
         }
@@ -369,13 +469,50 @@
         .demo-info h3 {
             color: var(--primary-color);
             font-weight: 700;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 6px;
+        }
+
+        .demo-info .interaction-hint {
+            color: #22c55e;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+            animation: pulse-green 2s ease-in-out infinite;
+        }
+
+        .demo-info .interaction-hint i {
+            font-size: 1.1rem;
+            animation: bounce-icon 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes bounce-icon {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
         }
 
         .demo-info p {
-            font-size: 1rem;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.5;
             color: var(--text-color);
             margin: 0;
         }
@@ -484,84 +621,405 @@
             }
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
+        /* Tablet Responsive (769px - 1024px) */
+        @media (max-width: 1024px) and (min-width: 769px) {
             .demo-container {
-                padding: 20px;
+                padding: 6px;
+            }
+
+            .demo-header {
+                margin-bottom: 5px;
             }
 
             .demo-header h2 {
-                font-size: 1.8rem;
+                font-size: 1rem;
+                margin-bottom: 3px;
             }
 
             .demo-header p {
-                font-size: 1rem;
+                font-size: 0.7rem;
+            }
+
+            .demo-controls {
+                padding: 5px 6px;
+                gap: 5px;
+                margin-bottom: 5px;
+            }
+
+            .demo-nav-btn {
+                padding: 6px 10px;
+                font-size: 0.7rem;
+            }
+
+            .demo-nav-btn i {
+                font-size: 0.75rem;
+            }
+
+            .breadcrumb-item {
+                font-size: 0.7rem;
+                padding: 4px 8px;
+            }
+
+            .demo-screen-wrapper {
+                padding: 3px;
+                margin-bottom: 5px;
+            }
+
+            .demo-screen-image {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .image-maximize-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.8rem;
+                top: 6px;
+                right: 6px;
+            }
+
+            .close-demo-btn {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+                top: 6px;
+                right: 6px;
+            }
+
+            .demo-info {
+                padding: 6px 8px;
+            }
+
+            .demo-info .interaction-hint {
+                font-size: 0.7rem;
+                margin-bottom: 4px;
+                gap: 4px;
+            }
+
+            .demo-info .interaction-hint i {
+                font-size: 0.8rem;
+            }
+
+            .demo-info h3 {
+                font-size: 0.9rem;
+                margin-bottom: 3px;
+            }
+
+            .demo-info p {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Mobile Responsive (up to 768px) */
+        @media (max-width: 768px) {
+            .demo-container {
+                padding: 5px;
+            }
+
+            .demo-header {
+                margin-bottom: 4px;
+            }
+
+            .demo-header h2 {
+                font-size: 0.9rem;
+                margin-bottom: 2px;
+            }
+
+            .demo-header p {
+                font-size: 0.6rem;
+                line-height: 1.3;
             }
 
             .demo-controls {
                 flex-direction: column;
                 align-items: stretch;
+                padding: 4px 5px;
+                gap: 4px;
+                margin-bottom: 4px;
+            }
+
+            .demo-controls > div:first-child {
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+                width: 100%;
             }
 
             .demo-nav-btn {
                 width: 100%;
                 justify-content: center;
+                padding: 5px 8px;
+                font-size: 0.65rem;
+                min-height: 32px;
+            }
+
+            .demo-nav-btn i {
+                font-size: 0.7rem;
             }
 
             .demo-breadcrumb {
                 width: 100%;
                 justify-content: center;
+                flex-wrap: wrap;
+                gap: 3px;
             }
 
             .breadcrumb-item {
-                font-size: 0.8rem;
-                padding: 6px 12px;
+                font-size: 0.6rem;
+                padding: 3px 6px;
+            }
+
+            .breadcrumb-separator {
+                font-size: 0.75rem;
             }
 
             .demo-screen-wrapper {
-                padding: 15px;
-                min-height: 0;
+                padding: 2px;
+                margin-bottom: 4px;
+                border-radius: 6px;
+            }
+            
+            .demo-screen-image {
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 6px;
+            }
+            
+            .image-maximize-btn {
+                top: 5px;
+                right: 5px;
+                width: 30px;
+                height: 30px;
+                font-size: 0.7rem;
             }
             
             .close-demo-btn {
-                top: 10px;
-                right: 10px;
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
+                top: 5px;
+                right: 5px;
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
             }
-            
-            .demo-header h2 {
-                font-size: 1.5rem;
+
+            .demo-info {
+                padding: 5px 6px;
+                border-radius: 6px;
             }
-            
-            .demo-header p {
-                font-size: 0.9rem;
+
+            .demo-info .interaction-hint {
+                font-size: 0.65rem;
+                margin-bottom: 3px;
+                gap: 4px;
+            }
+
+            .demo-info .interaction-hint i {
+                font-size: 0.75rem;
             }
             
             .demo-info h3 {
-                font-size: 1.2rem;
-            }
-            
-            .demo-info h3 {
-                font-size: 1.2rem;
+                font-size: 0.75rem;
+                margin-bottom: 2px;
             }
 
             .demo-info p {
-                font-size: 0.9rem;
+                font-size: 0.65rem;
+                line-height: 1.3;
+            }
+
+            .clickable-area {
+                border-width: 2px;
             }
 
             .clickable-area-label {
-                font-size: 0.75rem;
-                padding: 6px 12px;
+                font-size: 0.6rem;
+                padding: 3px 6px;
+            }
+
+            .clickable-area:hover .clickable-area-label {
+                transform: translateY(-30px);
+            }
+            
+            .image-fullscreen-content {
+                width: 100vw;
+                height: 100vh;
+                padding: 6px;
+            }
+            
+            .image-fullscreen-close {
+                top: 6px;
+                right: 6px;
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
             }
 
             .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 28px;
+                width: 45px;
+                height: 45px;
+                bottom: 12px;
+                right: 12px;
+                font-size: 22px;
+            }
+        }
+
+        /* Small Mobile (up to 480px) */
+        @media (max-width: 480px) {
+            .demo-container {
+                padding: 4px;
+            }
+
+            .demo-header {
+                margin-bottom: 3px;
+            }
+
+            .demo-header h2 {
+                font-size: 0.8rem;
+                margin-bottom: 1px;
+            }
+
+            .demo-header p {
+                font-size: 0.55rem;
+            }
+
+            .demo-controls {
+                padding: 3px 4px;
+                margin-bottom: 3px;
+            }
+
+            .demo-nav-btn {
+                padding: 4px 6px;
+                font-size: 0.6rem;
+                min-height: 28px;
+            }
+
+            .demo-nav-btn i {
+                font-size: 0.65rem;
+            }
+
+            .breadcrumb-item {
+                font-size: 0.55rem;
+                padding: 2px 5px;
+            }
+
+            .demo-screen-wrapper {
+                padding: 2px;
+                margin-bottom: 3px;
+            }
+
+            .image-maximize-btn {
+                width: 26px;
+                height: 26px;
+                font-size: 0.6rem;
+                top: 4px;
+                right: 4px;
+            }
+
+            .close-demo-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 0.7rem;
+                top: 4px;
+                right: 4px;
+            }
+
+            .demo-info {
+                padding: 4px 5px;
+            }
+
+            .demo-info .interaction-hint {
+                font-size: 0.6rem;
+                margin-bottom: 2px;
+            }
+
+            .demo-info .interaction-hint i {
+                font-size: 0.65rem;
+            }
+
+            .demo-info h3 {
+                font-size: 0.7rem;
+                margin-bottom: 2px;
+            }
+
+            .demo-info p {
+                font-size: 0.6rem;
+            }
+
+            .clickable-area-label {
+                font-size: 0.55rem;
+                padding: 2px 5px;
+            }
+
+            .whatsapp-float {
+                width: 40px;
+                height: 40px;
+                bottom: 10px;
+                right: 10px;
+                font-size: 20px;
+            }
+        }
+
+        /* Landscape Mobile Orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .demo-container {
+                padding: 4px;
+            }
+
+            .demo-header {
+                margin-bottom: 3px;
+            }
+
+            .demo-header h2 {
+                font-size: 0.8rem;
+                margin-bottom: 1px;
+            }
+
+            .demo-header p {
+                font-size: 0.55rem;
+            }
+
+            .demo-controls {
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 3px 4px;
+                margin-bottom: 3px;
+            }
+
+            .demo-controls > div:first-child {
+                flex-direction: row;
+                flex-wrap: wrap;
+                flex: 1;
+                gap: 2px;
+            }
+
+            .demo-nav-btn {
+                flex: 1;
+                min-width: 60px;
+                padding: 4px 6px;
+                font-size: 0.6rem;
+                min-height: 26px;
+            }
+
+            .demo-screen-wrapper {
+                padding: 2px;
+                margin-bottom: 3px;
+            }
+
+            .demo-info {
+                padding: 4px 5px;
+            }
+
+            .demo-info .interaction-hint {
+                font-size: 0.6rem;
+                margin-bottom: 2px;
+            }
+
+            .demo-info h3 {
+                font-size: 0.7rem;
+                margin-bottom: 2px;
+            }
+
+            .demo-info p {
+                font-size: 0.6rem;
             }
         }
     </style>
@@ -603,13 +1061,30 @@
                         <div class="loading-overlay" id="loadingOverlay">
                             <div class="spinner"></div>
                         </div>
+                        <button class="image-maximize-btn" id="imageMaximizeBtn" title="Maximize Image">
+                            <i class="fas fa-expand"></i>
+                        </button>
                         <img id="currentScreenImg" src="assets/images/about/Flow POS/login.jpeg" alt="Demo Screen" class="demo-screen-image fade-in">
                         <div id="clickableAreas" class="clickable-areas-layer"></div>
                     </div>
                 </div>
                 
+                <!-- Image Fullscreen Modal -->
+                <div class="image-fullscreen-modal" id="imageFullscreenModal">
+                    <div class="image-fullscreen-content">
+                        <button class="image-fullscreen-close" id="imageFullscreenClose" title="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <img id="fullscreenImage" src="" alt="Fullscreen Image" class="image-fullscreen-img">
+                    </div>
+                </div>
+                
                 <!-- Screen Info -->
                 <div class="demo-info" id="demoInfo">
+                    <div class="interaction-hint">
+                        <i class="fas fa-hand-pointer"></i>
+                        <span>Click on the green highlighted buttons to interact with the software</span>
+                    </div>
                     <h3 id="screenTitle">Secure Login System</h3>
                     <p id="screenDescription">Click on interactive elements highlighted on the screen to navigate through the system.</p>
                 </div>
@@ -655,6 +1130,10 @@
                 this.loadingOverlay = document.getElementById('loadingOverlay');
                 this.demoScreenContainer = document.getElementById('demoScreen');
                 this.demoScreenWrapper = document.querySelector('.demo-screen-wrapper');
+                this.imageMaximizeBtn = document.getElementById('imageMaximizeBtn');
+                this.imageFullscreenModal = document.getElementById('imageFullscreenModal');
+                this.imageFullscreenClose = document.getElementById('imageFullscreenClose');
+                this.fullscreenImage = document.getElementById('fullscreenImage');
                 
                 // Initialize
                 this.loadNavigationFlow();
@@ -666,8 +1145,22 @@
              */
             async loadNavigationFlow() {
                 try {
-                    const response = await fetch('navigation-flow.txt');
+                    // Add cache-busting parameter to prevent browser caching
+                    const timestamp = new Date().getTime();
+                    const response = await fetch(`navigation-flow.txt?t=${timestamp}`, {
+                        cache: 'no-store',
+                        headers: {
+                            'Cache-Control': 'no-cache, no-store, must-revalidate',
+                            'Pragma': 'no-cache',
+                            'Expires': '0'
+                        }
+                    });
                     const text = await response.text();
+                    
+                    // Clear existing graph before parsing new data
+                    this.navigationGraph.clear();
+                    this.screenData = {};
+                    
                     this.parseNavigationFlow(text);
                     this.initializeDemo();
                 } catch (error) {
@@ -733,6 +1226,60 @@
             initializeDemo() {
                 this.navigateToScreen('login', false);
                 this.setupEventListeners();
+                
+                // Add keyboard shortcut to reload navigation flow (Ctrl+R or Cmd+R)
+                document.addEventListener('keydown', (e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'r') {
+                        e.preventDefault();
+                        this.reloadNavigationFlow();
+                    }
+                });
+            }
+            
+            /**
+             * Reload navigation flow from file (called on page focus or keyboard shortcut)
+             */
+            async reloadNavigationFlow() {
+                try {
+                    // Show loading
+                    this.showLoading();
+                    
+                    // Add cache-busting parameter
+                    const timestamp = new Date().getTime();
+                    const response = await fetch(`navigation-flow.txt?t=${timestamp}`, {
+                        cache: 'no-store',
+                        headers: {
+                            'Cache-Control': 'no-cache, no-store, must-revalidate',
+                            'Pragma': 'no-cache',
+                            'Expires': '0'
+                        }
+                    });
+                    const text = await response.text();
+                    
+                    // Clear existing graph
+                    this.navigationGraph.clear();
+                    this.screenData = {};
+                    
+                    // Parse new data
+                    this.parseNavigationFlow(text);
+                    
+                    // Reload current screen with new coordinates
+                    const currentScreen = this.navigationGraph.get(this.currentScreenId);
+                    if (currentScreen) {
+                        // Force image reload to recalculate positions
+                        this.currentScreenImg.src = currentScreen.imagePath + '?t=' + timestamp;
+                        this.currentScreenImg.onload = () => {
+                            this.hideLoading();
+                            this.renderClickableAreas(currentScreen);
+                            this.updateScreenInfo(currentScreen);
+                        };
+                    } else {
+                        this.hideLoading();
+                    }
+                } catch (error) {
+                    console.error('Error reloading navigation flow:', error);
+                    this.hideLoading();
+                }
             }
             
             /**
@@ -742,6 +1289,7 @@
                 this.backBtn.addEventListener('click', () => this.goBack());
                 this.resetBtn.addEventListener('click', () => this.resetDemo());
                 this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+                this.imageMaximizeBtn.addEventListener('click', () => this.toggleFullscreen());
                 
                 // Listen for fullscreen changes
                 document.addEventListener('fullscreenchange', () => {
@@ -784,6 +1332,18 @@
                             this.renderClickableAreas(currentScreen);
                         }
                     }, 250);
+                });
+                
+                // Reload navigation flow when page regains focus (useful after editing file)
+                let lastFocusTime = Date.now();
+                window.addEventListener('focus', () => {
+                    // Only reload if page was unfocused for more than 2 seconds
+                    // This prevents reloading on every focus event
+                    const timeSinceLastFocus = Date.now() - lastFocusTime;
+                    if (timeSinceLastFocus > 2000) {
+                        this.reloadNavigationFlow();
+                    }
+                    lastFocusTime = Date.now();
                 });
             }
             
@@ -831,12 +1391,22 @@
                                        document.msFullscreenElement);
                 
                 const icon = this.fullscreenBtn.querySelector('i');
+                const maximizeIcon = this.imageMaximizeBtn.querySelector('i');
+                
                 if (isFullscreen) {
                     icon.className = 'fas fa-compress';
                     this.fullscreenBtn.title = 'Exit Fullscreen';
+                    if (maximizeIcon) {
+                        maximizeIcon.className = 'fas fa-compress';
+                        this.imageMaximizeBtn.title = 'Exit Fullscreen';
+                    }
                 } else {
                     icon.className = 'fas fa-expand';
                     this.fullscreenBtn.title = 'Fullscreen';
+                    if (maximizeIcon) {
+                        maximizeIcon.className = 'fas fa-expand';
+                        this.imageMaximizeBtn.title = 'Maximize Image';
+                    }
                 }
             }
             
@@ -1011,6 +1581,23 @@
              */
             hideLoading() {
                 this.loadingOverlay.classList.remove('active');
+            }
+            
+            /**
+             * Maximize image to fullscreen modal
+             */
+            maximizeImage() {
+                this.fullscreenImage.src = this.currentScreenImg.src;
+                this.imageFullscreenModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            /**
+             * Close image fullscreen modal
+             */
+            closeImageFullscreen() {
+                this.imageFullscreenModal.classList.remove('active');
+                document.body.style.overflow = '';
             }
         }
         
