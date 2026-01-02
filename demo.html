@@ -611,7 +611,7 @@
             <div class="row justify-content-center mt-5">
                 <div class="col-lg-8 fade-in" style="transition-delay: 0.2s;">
                     <div class="form-container">
-                        <form>
+                        <form id="demoForm">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -657,6 +657,7 @@
                                         <label for="country">Select Country*</label>
                                         <select class="form-control" id="country" required>
                                             <option value="" disabled selected>Select your country</option>
+                                            <option value="us">Pakistan</option>
                                             <option value="us">United States</option>
                                             <option value="uk">United Kingdom</option>
                                             <option value="ca">Canada</option>
@@ -887,6 +888,55 @@
             
             // Check on scroll
             window.addEventListener('scroll', animateOnScroll);
+
+            // Demo form WhatsApp redirect
+            const demoForm = document.getElementById('demoForm');
+            if (demoForm) {
+                demoForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const business = document.getElementById('business').value.trim();
+                    const typeSelect = document.getElementById('type');
+                    const type = typeSelect.selectedIndex > 0 ? typeSelect.options[typeSelect.selectedIndex].text : '';
+                    const city = document.getElementById('city').value.trim();
+                    const countrySelect = document.getElementById('country');
+                    const country = countrySelect.selectedIndex > 0 ? countrySelect.options[countrySelect.selectedIndex].text : '';
+                    const storesSelect = document.getElementById('stores');
+                    const stores = storesSelect.selectedIndex > 0 ? storesSelect.options[storesSelect.selectedIndex].text : '';
+                    
+                    // Validate required fields
+                    if (!name || !email || !business || !type || !city || !country || !stores) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Format message for WhatsApp
+                    const whatsappMessage = `*Demo Booking Request*\n\n` +
+                        `*Name:* ${name}\n` +
+                        `*Email:* ${email}\n` +
+                        `*Business Name:* ${business}\n` +
+                        `*Business Type:* ${type}\n` +
+                        `*City:* ${city}\n` +
+                        `*Country:* ${country}\n` +
+                        `*Number of Stores:* ${stores}\n\n` +
+                        `I'm interested in booking a demo for Flow POS system.`;
+                    
+                    // WhatsApp phone number (923016645866 is 03016645866 with country code)
+                    const whatsappPhone = '923016645866';
+                    
+                    // Encode message for URL
+                    const encodedMessage = encodeURIComponent(whatsappMessage);
+                    
+                    // Create WhatsApp URL
+                    const whatsappURL = `https://wa.me/${whatsappPhone}?text=${encodedMessage}`;
+                    
+                    // Redirect to WhatsApp
+                    window.open(whatsappURL, '_blank');
+                });
+            }
         });
     </script>
     
