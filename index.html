@@ -1774,26 +1774,56 @@ window.addEventListener('load', () => {
             document.getElementById('newCommentForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Show success message
-                alert('Thank you for your review! It will be visible after moderation.');
+                // Get form values
+                const commentName = document.getElementById('commentName').value.trim();
+                const commentPosition = document.getElementById('commentPosition').value.trim();
+                const commentText = document.getElementById('commentText').value.trim();
+                const commentRating = document.getElementById('commentRating').value;
                 
-                // Reset form
-                this.reset();
+                // Validate required fields
+                if (!commentName || !commentText) {
+                    alert('Please fill in all required fields (Name and Experience).');
+                    return;
+                }
                 
-                // Reset stars
-                stars.forEach(s => {
-                    s.classList.remove('fas', 'active');
-                    s.classList.add('far');
-                });
-                ratingInput.value = '5';
+                // Format message for WhatsApp
+                const whatsappMessage = `*Review Submission*\n\n` +
+                    `*Name:* ${commentName}\n` +
+                    (commentPosition ? `*Position:* ${commentPosition}\n` : '') +
+                    `*Rating:* ${commentRating} out of 5 stars\n\n` +
+                    `*Experience with Flow POS:*\n${commentText}`;
                 
-                // Show default 5 stars after reset
-                stars.forEach(s => {
-                    if (s.getAttribute('data-rating') <= 5) {
-                        s.classList.remove('far');
-                        s.classList.add('fas', 'active');
-                    }
-                });
+                // WhatsApp phone number (923016645866 is 03016645866 with country code)
+                const whatsappPhone = '923016645866';
+                
+                // Encode message for URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                
+                // Create WhatsApp URL
+                const whatsappURL = `https://wa.me/${whatsappPhone}?text=${encodedMessage}`;
+                
+                // Redirect to WhatsApp
+                window.open(whatsappURL, '_blank');
+                
+                // Reset form after redirect
+                setTimeout(() => {
+                    this.reset();
+                    
+                    // Reset stars
+                    stars.forEach(s => {
+                        s.classList.remove('fas', 'active');
+                        s.classList.add('far');
+                    });
+                    ratingInput.value = '5';
+                    
+                    // Show default 5 stars after reset
+                    stars.forEach(s => {
+                        if (s.getAttribute('data-rating') <= 5) {
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
+                        }
+                    });
+                }, 500);
             });
         });
     </script>
