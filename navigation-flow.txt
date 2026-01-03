@@ -3,53 +3,34 @@
 # This file defines the navigation flow for the interactive demo.
 # Format: Each screen definition starts with "SCREEN:" followed by screen data
 # Clickable areas are defined with "CLICKABLE_AREA:" lines
-# 
+#
 # Screen Format: SCREEN:SCREEN_ID|IMAGE_PATH|SCREEN_TITLE|DESCRIPTION
-# Clickable Area Format: CLICKABLE_AREA:X_PERCENT|Y_PERCENT|WIDTH_PERCENT|HEIGHT_PERCENT|NEXT_SCREEN_ID|LABEL|COLOR
-# 
-# COLOR (optional): Color for the clickable area. If not specified, defaults to green (#22c55e)
-#   Supported formats:
-#   - Hex: #22c55e, #2c5 (short hex)
-#   - RGB: rgb(34, 197, 94)
-#   - RGBA: rgba(34, 197, 94, 0.6)
-#   - Color names: green, blue, red, yellow, purple, orange, pink, cyan
-# 
+# Clickable Area Format: CLICKABLE_AREA:X_PERCENT|Y_PERCENT|WIDTH_PERCENT|HEIGHT_PERCENT|NEXT_SCREEN_ID|LABEL
+#
 # Coordinates are percentage-based (0-100) for responsive design
 # Lines starting with # are comments and ignored
 # Empty lines are ignored
 # ============================================================
 
 
-# 1. UNDERSTANDING THE COORDINATE SYSTEM:
-#    - X_PERCENT: Horizontal position (0 = left edge, 100 = right edge)
-#    - Y_PERCENT: Vertical position (0 = top edge, 100 = bottom edge)
-#    - WIDTH_PERCENT: Button width as percentage of image width
-#    - HEIGHT_PERCENT: Button height as percentage of image height
-
-# Screen 1: Login Screen
+# Screen: Secure Login System
 SCREEN:login|assets/images/about/Flow POS/login.jpeg|Secure Login System|PIN-based authentication interface with secure access
 CLICKABLE_AREA:79|60|10|12|main_menu|Login PIN Entry Area|#22c55e
 CLICKABLE_AREA:70|76|10|10|login|Exit Button|#22c55e
 
-
-# Screen 2: Main Menu Dashboard
+# Screen: Main Dashboard
 SCREEN:main_menu|assets/images/about/Flow POS/main menu.jpeg|Main Dashboard|Central command center for all Flow POS operations
 CLICKABLE_AREA:35|9|30|20|order_bill|POS Module|#22c55e
 CLICKABLE_AREA:67|32|30|20|search_vendor|Vendor Management|#22c55e
 CLICKABLE_AREA:2.5|51|30|20|shop_details|Expense Management|#22c55e
 CLICKABLE_AREA:36|75|30|18|login|Logout Button|#22c55e
 
-# Screen 3: Order Bill Screen
+# Screen: Order Management
 SCREEN:order_bill|assets/images/about/Flow POS/order bill.jpeg|Order Management|Complete order view with itemized list and payment options
 CLICKABLE_AREA:10|78|17|8|print_bill|Settle Button|#22c55e
 CLICKABLE_AREA:10|86|35|9|main_menu|Back Button|#22c55e
 CLICKABLE_AREA:28|78|17|8|main_menu|Close Button|#22c55e
 
-
-# Screen 4: 
-
-
-# Screen 4: Print Bill / Payment Processing
+# Screen: Payment Processing
 SCREEN:print_bill|assets/images/about/Flow POS/print bill.jpeg|Payment Processing|Advanced payment methods with multiple payment options
 CLICKABLE_AREA:85|85|15|11|main_menu|Close Button|#22c55e
-

@@ -1630,6 +1630,16 @@
                 <input type="text" id="areaLabel" placeholder="e.g., Login Button">
             </div>
             <div class="admin-input-group">
+                <label>Color</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="color" id="areaColorPicker" value="#22c55e" style="width: 60px; height: 40px; cursor: pointer; border: 2px solid #e0e0e0; border-radius: 6px;">
+                    <input type="text" id="areaColorInput" placeholder="#22c55e" style="flex: 1;">
+                </div>
+                <small style="font-size: 0.75rem; color: #666; margin-top: 5px; display: block;">
+                    Enter hex color (e.g., #22c55e) or use the color picker
+                </small>
+            </div>
+            <div class="admin-input-group">
                 <label>Coordinates (Percentage)</label>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                     <div>
@@ -2355,7 +2365,9 @@
                     text += `SCREEN:${screenData.id}|${screenData.imagePath}|${screenData.title}|${screenData.description}\n`;
                     
                     for (const area of screenData.clickableAreas) {
-                        text += `CLICKABLE_AREA:${area.x}|${area.y}|${area.width}|${area.height}|${area.nextScreenId}|${area.label}\n`;
+                        // Include color if it exists and is not the default green
+                        const color = area.color || '#22c55e';
+                        text += `CLICKABLE_AREA:${area.x}|${area.y}|${area.width}|${area.height}|${area.nextScreenId}|${area.label}|${color}\n`;
                     }
                 }
                 
@@ -2417,6 +2429,8 @@
                 this.areaConfigModalClose = document.getElementById('areaConfigModalClose');
                 this.areaNextScreen = document.getElementById('areaNextScreen');
                 this.areaLabel = document.getElementById('areaLabel');
+                this.areaColorPicker = document.getElementById('areaColorPicker');
+                this.areaColorInput = document.getElementById('areaColorInput');
                 this.areaXSlider = document.getElementById('areaXSlider');
                 this.areaYSlider = document.getElementById('areaYSlider');
                 this.areaWidthSlider = document.getElementById('areaWidthSlider');
@@ -2496,6 +2510,19 @@
                 });
                 this.areaHeightSlider.addEventListener('input', (e) => {
                     this.areaHeight.textContent = parseFloat(e.target.value).toFixed(1);
+                });
+                
+                // Color picker and input sync
+                this.areaColorPicker.addEventListener('input', (e) => {
+                    this.areaColorInput.value = e.target.value;
+                });
+                
+                this.areaColorInput.addEventListener('input', (e) => {
+                    const color = e.target.value.trim();
+                    // Validate hex color format
+                    if (/^#[0-9A-Fa-f]{6}$/.test(color) || /^#[0-9A-Fa-f]{3}$/.test(color)) {
+                        this.areaColorPicker.value = color;
+                    }
                 });
                 
                 // Password settings
@@ -2847,12 +2874,26 @@
                 this.areaLabel.value = '';
                 this.editingAreaIndex = areaIndex;
                 
+                // Default color to green if not specified
+                const defaultColor = '#22c55e';
+                this.areaColorInput.value = defaultColor;
+                this.areaColorPicker.value = defaultColor;
+                
                 if (areaIndex !== null) {
                     // Editing existing area
                     const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
                     const area = screen.clickableAreas[areaIndex];
                     this.areaLabel.value = area.label;
                     this.areaNextScreen.value = area.nextScreenId;
+                    
+                    // Set color if it exists, otherwise use default
+                    const areaColor = area.color || defaultColor;
+                    this.areaColorInput.value = areaColor;
+                    
+                    // Try to convert color to hex for color picker
+                    const hexColor = this.colorToHex(areaColor);
+                    this.areaColorPicker.value = hexColor;
+                    
                     this.areaDeleteBtn.style.display = 'block';
                 } else {
                     this.areaDeleteBtn.style.display = 'none';
@@ -2880,13 +2921,24 @@
                 const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
                 if (!screen) return;
                 
+                // Get color from input (prefer text input, fallback to picker)
+                let color = this.areaColorInput.value.trim();
+                if (!color) {
+                    color = this.areaColorPicker.value;
+                }
+                // Default to green if still empty
+                if (!color) {
+                    color = '#22c55e';
+                }
+                
                 const area = {
                     x: parseFloat(this.areaXSlider.value),
                     y: parseFloat(this.areaYSlider.value),
                     width: parseFloat(this.areaWidthSlider.value),
                     height: parseFloat(this.areaHeightSlider.value),
                     nextScreenId: this.areaNextScreen.value,
-                    label: this.areaLabel.value.trim()
+                    label: this.areaLabel.value.trim(),
+                    color: color
                 };
                 
                 if (!area.label) {
@@ -2931,6 +2983,60 @@
                 }
             }
             
+            /**
+             * Convert color string to hex format for color picker
+             * @param {string} color - Color in any format
+             * @returns {string} Hex color string
+             */
+            colorToHex(color) {
+                if (!color) return '#22c55e';
+                
+                color = color.trim();
+                
+                // If already hex format
+                if (color.startsWith('#')) {
+                    // Ensure it's 6 digits
+                    if (color.length === 4) {
+                        // Short hex (#2c5 -> #22cc55)
+                        const r = color[1];
+                        const g = color[2];
+                        const b = color[3];
+                        return `#${r}${r}${g}${g}${b}${b}`;
+                    }
+                    return color.length === 7 ? color : '#22c55e';
+                }
+                
+                // If rgb or rgba format
+                if (color.startsWith('rgb')) {
+                    const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+                    if (match) {
+                        const r = parseInt(match[1]).toString(16).padStart(2, '0');
+                        const g = parseInt(match[2]).toString(16).padStart(2, '0');
+                        const b = parseInt(match[3]).toString(16).padStart(2, '0');
+                        return `#${r}${g}${b}`;
+                    }
+                }
+                
+                // Color name mapping
+                const colorNames = {
+                    'green': '#22c55e',
+                    'blue': '#3b82f6',
+                    'red': '#ef4444',
+                    'yellow': '#eab308',
+                    'purple': '#a855f7',
+                    'orange': '#f97316',
+                    'pink': '#ec4899',
+                    'cyan': '#06b6d4',
+                };
+                
+                if (colorNames[color.toLowerCase()]) {
+                    return colorNames[color.toLowerCase()];
+                }
+                
+                // Default to green
+                return '#22c55e';
+            }
+            
             autoSave() {
                 if (this.fileHandle) {
                     // Auto-save after a short delay
@@ -2967,10 +3073,21 @@
                     screen.clickableAreas.forEach((area, index) => {
                         const li = document.createElement('li');
                         li.className = 'admin-list-item';
+                        const areaColor = area.color || '#22c55e';
+                        // Convert color to hex if needed for display
+                        let displayColor = areaColor;
+                        if (!areaColor.startsWith('#')) {
+                            // Try to convert rgb/rgba to hex (simplified)
+                            displayColor = '#22c55e'; // Default if not hex
+                        }
+                        
                         li.innerHTML = `
-                            <div class="admin-list-item-info">
-                                <div class="admin-list-item-title">${area.label}</div>
-                                <div class="admin-list-item-desc">→ ${this.demoNavigator.screenData[area.nextScreenId]?.title || area.nextScreenId}</div>
+                            <div class="admin-list-item-info" style="display: flex; align-items: center; gap: 10px;">
+                                <div style="width: 20px; height: 20px; background-color: ${displayColor}; border: 2px solid #e0e0e0; border-radius: 4px; flex-shrink: 0;"></div>
+                                <div>
+                                    <div class="admin-list-item-title">${area.label}</div>
+                                    <div class="admin-list-item-desc">→ ${this.demoNavigator.screenData[area.nextScreenId]?.title || area.nextScreenId} | Color: ${areaColor}</div>
+                                </div>
                             </div>
                             <div class="admin-list-item-actions">
                                 <button class="admin-icon-btn" onclick="adminManager.editClickableArea(${index})" title="Edit">
