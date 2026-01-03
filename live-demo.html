@@ -1207,13 +1207,16 @@
                     else if (line.startsWith('CLICKABLE_AREA:') && currentScreenData) {
                         const parts = line.substring(15).split('|');
                         if (parts.length >= 6) {
+                            // Color is optional (7th parameter), default to green: #22c55e
+                            const color = parts[6] ? parts[6].trim() : '#22c55e';
                             currentScreenData.clickableAreas.push({
                                 x: parseFloat(parts[0]),
                                 y: parseFloat(parts[1]),
                                 width: parseFloat(parts[2]),
                                 height: parseFloat(parts[3]),
                                 nextScreenId: parts[4],
-                                label: parts[5]
+                                label: parts[5],
+                                color: color
                             });
                         }
                     }
@@ -1510,10 +1513,63 @@
                             areaElement.style.height = (area.height * scaleY) + 'px';
                             areaElement.style.animationDelay = (index * 0.1) + 's';
                             
+                            // Apply color from configuration (default to green if not specified)
+                            const color = area.color || '#22c55e';
+                            const rgbaColor = this.colorToRgba(color);
+                            const rgbaColorSolid = this.colorToRgba(color, 1);
+                            const rgbaColorLight = this.colorToRgba(color, 0.15);
+                            const rgbaColorMedium = this.colorToRgba(color, 0.3);
+                            const rgbaColorLabel = this.colorToRgba(color, 0.95);
+                            const rgbaColorShadow = this.colorToRgba(color, 0.2);
+                            const rgbaColorGlow = this.colorToRgba(color, 0.4);
+                            
+                            // Apply border and background colors
+                            areaElement.style.borderColor = rgbaColor;
+                            areaElement.style.backgroundColor = rgbaColorLight;
+                            
+                            // Store color for hover effects
+                            areaElement.dataset.color = color;
+                            areaElement.dataset.rgbaSolid = rgbaColorSolid;
+                            areaElement.dataset.rgbaMedium = rgbaColorMedium;
+                            areaElement.dataset.rgbaShadow = rgbaColorShadow;
+                            
+                            // Add hover effect using stored colors
+                            areaElement.addEventListener('mouseenter', function() {
+                                this.style.borderColor = this.dataset.rgbaSolid;
+                                this.style.backgroundColor = this.dataset.rgbaMedium;
+                                this.style.boxShadow = `0 0 0 4px ${this.dataset.rgbaShadow}`;
+                            });
+                            
+                            areaElement.addEventListener('mouseleave', function() {
+                                this.style.borderColor = rgbaColor;
+                                this.style.backgroundColor = rgbaColorLight;
+                                this.style.boxShadow = 'none';
+                            });
+                            
                             // Add label
                             const label = document.createElement('div');
                             label.className = 'clickable-area-label';
                             label.textContent = area.label;
+                            label.style.backgroundColor = rgbaColorLabel;
+                            label.style.boxShadow = `0 4px 12px ${rgbaColorGlow}`;
+                            
+                            // Add label arrow color using inline style
+                            label.style.setProperty('--label-color', rgbaColorLabel);
+                            label.setAttribute('data-color', color);
+                            
+                            // Create dynamic style for label arrow if not exists
+                            const styleId = `label-arrow-${color.replace(/[^a-zA-Z0-9]/g, '')}`;
+                            if (!document.getElementById(styleId)) {
+                                const style = document.createElement('style');
+                                style.id = styleId;
+                                style.textContent = `
+                                    .clickable-area-label[data-color="${color.replace(/[#()]/g, '\\$&')}"]::after {
+                                        border-top-color: ${rgbaColorLabel} !important;
+                                    }
+                                `;
+                                document.head.appendChild(style);
+                            }
+                            
                             areaElement.appendChild(label);
                             
                             // Add click handler
@@ -1581,6 +1637,66 @@
              */
             hideLoading() {
                 this.loadingOverlay.classList.remove('active');
+            }
+            
+            /**
+             * Convert color string to RGBA format
+             * Supports: hex (#22c55e), rgb(34, 197, 94), rgba(34, 197, 94, 0.6), and color names
+             * @param {string} color - Color string in various formats
+             * @param {number} alpha - Alpha value (0-1), defaults to 0.6
+             * @returns {string} RGBA color string
+             */
+            colorToRgba(color, alpha = 0.6) {
+                if (!color) return 'rgba(34, 197, 94, ' + alpha + ')'; // Default green
+                
+                color = color.trim();
+                
+                // If already rgba format
+                if (color.startsWith('rgba(')) {
+                    const match = color.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*([\d.]+)\)/);
+                    if (match) {
+                        return `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${alpha})`;
+                    }
+                }
+                
+                // If rgb format, convert to rgba
+                if (color.startsWith('rgb(')) {
+                    const match = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+                    if (match) {
+                        return `rgba(${match[1]}, ${match[2]}, ${match[3]}, ${alpha})`;
+                    }
+                }
+                
+                // If hex format (#22c55e or #2c5)
+                if (color.startsWith('#')) {
+                    let hex = color.substring(1);
+                    if (hex.length === 3) {
+                        hex = hex.split('').map(c => c + c).join('');
+                    }
+                    const r = parseInt(hex.substring(0, 2), 16);
+                    const g = parseInt(hex.substring(2, 4), 16);
+                    const b = parseInt(hex.substring(4, 6), 16);
+                    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+                }
+                
+                // Try to parse as color name (basic support)
+                const colorNames = {
+                    'green': 'rgba(34, 197, 94, ' + alpha + ')',
+                    'blue': 'rgba(59, 130, 246, ' + alpha + ')',
+                    'red': 'rgba(239, 68, 68, ' + alpha + ')',
+                    'yellow': 'rgba(234, 179, 8, ' + alpha + ')',
+                    'purple': 'rgba(168, 85, 247, ' + alpha + ')',
+                    'orange': 'rgba(249, 115, 22, ' + alpha + ')',
+                    'pink': 'rgba(236, 72, 153, ' + alpha + ')',
+                    'cyan': 'rgba(6, 182, 212, ' + alpha + ')',
+                };
+                
+                if (colorNames[color.toLowerCase()]) {
+                    return colorNames[color.toLowerCase()];
+                }
+                
+                // Default to green if parsing fails
+                return 'rgba(34, 197, 94, ' + alpha + ')';
             }
             
             /**
