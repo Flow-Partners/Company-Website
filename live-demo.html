@@ -134,6 +134,375 @@
             box-shadow: 0 6px 20px rgba(4, 84, 118, 0.5);
         }
 
+        /* Admin Button */
+        .admin-btn {
+            position: absolute;
+            top: 20px;
+            right: 75px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        
+        .admin-btn:hover {
+            background: #ee5a5a;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .admin-btn.active {
+            background: #22c55e;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+        }
+
+        .admin-btn.active:hover {
+            background: #16a34a;
+        }
+
+        /* Admin Panel Sidebar */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-panel.active {
+            right: 0;
+        }
+
+        .admin-panel-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-panel-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .admin-panel-close {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-panel-content {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .admin-section {
+            margin-bottom: 25px;
+        }
+
+        .admin-section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .admin-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-btn-small {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .admin-btn-small:hover {
+            background: #03415e;
+            transform: translateY(-2px);
+        }
+
+        .admin-btn-small.danger {
+            background: #dc3545;
+        }
+
+        .admin-btn-small.danger:hover {
+            background: #c82333;
+        }
+
+        .admin-btn-small.success {
+            background: #22c55e;
+        }
+
+        .admin-btn-small.success:hover {
+            background: #16a34a;
+        }
+
+        .admin-input-group {
+            margin-bottom: 15px;
+        }
+
+        .admin-input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .admin-input-group input,
+        .admin-input-group select,
+        .admin-input-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .admin-input-group input:focus,
+        .admin-input-group select:focus,
+        .admin-input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .admin-input-group textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .admin-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .admin-list-item {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid #e0e0e0;
+        }
+
+        .admin-list-item-info {
+            flex: 1;
+        }
+
+        .admin-list-item-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        .admin-list-item-desc {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .admin-list-item-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .admin-icon-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 5px 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-icon-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .admin-icon-btn.danger {
+            color: #dc3545;
+        }
+
+        .admin-icon-btn.danger:hover {
+            background: #ffe0e0;
+        }
+
+        .edit-mode-indicator {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1500;
+            display: none;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+            animation: pulse-edit-mode 2s infinite;
+        }
+
+        .edit-mode-indicator.active {
+            display: block;
+        }
+
+        @keyframes pulse-edit-mode {
+            0%, 100% {
+                opacity: 1;
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                opacity: 0.9;
+                transform: translateX(-50%) scale(1.02);
+            }
+        }
+
+        /* Click-and-drag rectangle */
+        .drag-rectangle {
+            position: absolute;
+            border: 2px dashed #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Modal Styles */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .admin-modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .admin-modal-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .admin-modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            color: #999;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-modal-close:hover {
+            color: var(--text-color);
+        }
+
+        .file-status {
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .file-status.disconnected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .file-status i {
+            font-size: 1rem;
+        }
+
         .demo-controls {
             display: flex;
             justify-content: space-between;
@@ -710,6 +1079,32 @@
             }
         }
 
+        /* Admin Panel Responsive */
+        @media (max-width: 768px) {
+            .admin-panel {
+                width: 100%;
+                right: -100%;
+            }
+
+            .admin-btn {
+                right: 65px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .edit-mode-indicator {
+                top: 70px;
+                font-size: 0.75rem;
+                padding: 8px 15px;
+            }
+
+            .admin-modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+        }
+
         /* Mobile Responsive (up to 768px) */
         @media (max-width: 768px) {
             .demo-container {
@@ -1031,6 +1426,12 @@
         <button class="close-demo-btn" onclick="window.location.href='index.html'" title="Close Demo">
             <i class="fas fa-times"></i>
         </button>
+        <button class="admin-btn" id="adminBtn" title="Admin Panel">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="edit-mode-indicator" id="editModeIndicator">
+            <i class="fas fa-edit"></i> Edit Mode Active - Click and drag on image to add clickable areas
+        </div>
         
         <div class="demo-container">
             <div class="demo-header">
@@ -1091,6 +1492,216 @@
             </div>
         </div>
     </section>
+
+    <!-- Admin Panel Sidebar -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-panel-header">
+            <h3><i class="fas fa-cog"></i> Admin Panel</h3>
+            <button class="admin-panel-close" id="adminPanelClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="admin-panel-content">
+            <!-- File Status -->
+            <div class="file-status disconnected" id="fileStatus">
+                <i class="fas fa-file"></i>
+                <span>No file selected</span>
+            </div>
+
+            <!-- File Selection -->
+            <div class="admin-section">
+                <div class="admin-section-title">File Management</div>
+                <button class="admin-btn-small" id="selectFileBtn">
+                    <i class="fas fa-folder-open"></i> Select navigation-flow.txt
+                </button>
+                <button class="admin-btn-small" id="saveFileBtn" style="display: none;">
+                    <i class="fas fa-save"></i> Save Changes
+                </button>
+            </div>
+
+            <!-- Edit Mode Toggle -->
+            <div class="admin-section">
+                <div class="admin-section-title">Edit Mode</div>
+                <button class="admin-btn-small" id="toggleEditModeBtn">
+                    <i class="fas fa-edit"></i> Enable Edit Mode
+                </button>
+                <p style="font-size: 0.75rem; color: #666; margin-top: 10px;">
+                    When enabled, click and drag on the image to create new clickable areas.
+                </p>
+            </div>
+
+            <!-- Current Screen Info -->
+            <div class="admin-section">
+                <div class="admin-section-title">Current Screen</div>
+                <div class="admin-input-group">
+                    <label>Screen ID</label>
+                    <input type="text" id="currentScreenId" readonly>
+                </div>
+                <div class="admin-input-group">
+                    <label>Title</label>
+                    <input type="text" id="currentScreenTitle">
+                </div>
+                <div class="admin-input-group">
+                    <label>Description</label>
+                    <textarea id="currentScreenDescription"></textarea>
+                </div>
+                <button class="admin-btn-small success" id="updateScreenBtn">
+                    <i class="fas fa-check"></i> Update Screen
+                </button>
+            </div>
+
+            <!-- Clickable Areas List -->
+            <div class="admin-section">
+                <div class="admin-section-title">Clickable Areas</div>
+                <ul class="admin-list" id="clickableAreasList">
+                    <!-- Dynamically populated -->
+                </ul>
+                <button class="admin-btn-small" id="addAreaBtn" style="display: none;">
+                    <i class="fas fa-plus"></i> Add New Area (Use Edit Mode)
+                </button>
+            </div>
+
+            <!-- Screen Management -->
+            <div class="admin-section">
+                <div class="admin-section-title">All Screens</div>
+                <ul class="admin-list" id="screensList">
+                    <!-- Dynamically populated -->
+                </ul>
+                <button class="admin-btn-small success" id="addScreenBtn">
+                    <i class="fas fa-plus"></i> Add New Screen
+                </button>
+            </div>
+
+            <!-- Settings -->
+            <div class="admin-section">
+                <div class="admin-section-title">Settings</div>
+                <div class="admin-input-group">
+                    <label>Admin Password</label>
+                    <input type="password" id="adminPassword" placeholder="Set admin password">
+                </div>
+                <button class="admin-btn-small" id="savePasswordBtn">
+                    <i class="fas fa-key"></i> Save Password
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div class="admin-modal" id="passwordModal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3>Admin Login</h3>
+                <button class="admin-modal-close" id="passwordModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="admin-input-group">
+                <label>Enter Admin Password</label>
+                <input type="password" id="passwordInput" placeholder="Password">
+            </div>
+            <div class="admin-btn-group">
+                <button class="admin-btn-small success" id="passwordSubmitBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="admin-btn-small" id="passwordCancelBtn">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clickable Area Config Modal -->
+    <div class="admin-modal" id="areaConfigModal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3>Configure Clickable Area</h3>
+                <button class="admin-modal-close" id="areaConfigModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="admin-input-group">
+                <label>Next Screen</label>
+                <select id="areaNextScreen">
+                    <!-- Dynamically populated -->
+                </select>
+            </div>
+            <div class="admin-input-group">
+                <label>Label</label>
+                <input type="text" id="areaLabel" placeholder="e.g., Login Button">
+            </div>
+            <div class="admin-input-group">
+                <label>Coordinates (Percentage)</label>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <label style="font-size: 0.75rem;">X: <span id="areaX">0</span>%</label>
+                        <input type="range" id="areaXSlider" min="0" max="100" step="0.1" value="0">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.75rem;">Y: <span id="areaY">0</span>%</label>
+                        <input type="range" id="areaYSlider" min="0" max="100" step="0.1" value="0">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.75rem;">Width: <span id="areaWidth">10</span>%</label>
+                        <input type="range" id="areaWidthSlider" min="1" max="100" step="0.1" value="10">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.75rem;">Height: <span id="areaHeight">10</span>%</label>
+                        <input type="range" id="areaHeightSlider" min="1" max="100" step="0.1" value="10">
+                    </div>
+                </div>
+            </div>
+            <div class="admin-btn-group">
+                <button class="admin-btn-small success" id="areaSaveBtn">
+                    <i class="fas fa-check"></i> Save Area
+                </button>
+                <button class="admin-btn-small danger" id="areaDeleteBtn" style="display: none;">
+                    <i class="fas fa-trash"></i> Delete Area
+                </button>
+                <button class="admin-btn-small" id="areaCancelBtn">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen Config Modal -->
+    <div class="admin-modal" id="screenConfigModal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3 id="screenModalTitle">Add New Screen</h3>
+                <button class="admin-modal-close" id="screenConfigModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="admin-input-group">
+                <label>Screen ID</label>
+                <input type="text" id="screenIdInput" placeholder="e.g., login, main_menu">
+            </div>
+            <div class="admin-input-group">
+                <label>Image Path</label>
+                <input type="text" id="screenImagePath" placeholder="assets/images/about/Flow POS/login.jpeg">
+            </div>
+            <div class="admin-input-group">
+                <label>Title</label>
+                <input type="text" id="screenTitleInput" placeholder="e.g., Secure Login System">
+            </div>
+            <div class="admin-input-group">
+                <label>Description</label>
+                <textarea id="screenDescriptionInput" placeholder="Description of the screen"></textarea>
+            </div>
+            <div class="admin-btn-group">
+                <button class="admin-btn-small success" id="screenSaveBtn">
+                    <i class="fas fa-check"></i> Save Screen
+                </button>
+                <button class="admin-btn-small danger" id="screenDeleteBtn" style="display: none;">
+                    <i class="fas fa-trash"></i> Delete Screen
+                </button>
+                <button class="admin-btn-small" id="screenCancelBtn">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1599,12 +2210,733 @@
                 this.imageFullscreenModal.classList.remove('active');
                 document.body.style.overflow = '';
             }
+
+            /**
+             * Generate navigation flow text from graph
+             */
+            generateNavigationFlowText() {
+                let text = `# Flow POS Interactive Demo Navigation Flow Configuration
+# ============================================================
+# This file defines the navigation flow for the interactive demo.
+# Format: Each screen definition starts with "SCREEN:" followed by screen data
+# Clickable areas are defined with "CLICKABLE_AREA:" lines
+#
+# Screen Format: SCREEN:SCREEN_ID|IMAGE_PATH|SCREEN_TITLE|DESCRIPTION
+# Clickable Area Format: CLICKABLE_AREA:X_PERCENT|Y_PERCENT|WIDTH_PERCENT|HEIGHT_PERCENT|NEXT_SCREEN_ID|LABEL
+#
+# Coordinates are percentage-based (0-100) for responsive design
+# Lines starting with # are comments and ignored
+# Empty lines are ignored
+# ============================================================
+
+`;
+
+                // Sort screens for consistent output
+                const sortedScreens = Array.from(this.navigationGraph.entries()).sort();
+                
+                for (const [screenId, screenData] of sortedScreens) {
+                    text += `\n# Screen: ${screenData.title}\n`;
+                    text += `SCREEN:${screenData.id}|${screenData.imagePath}|${screenData.title}|${screenData.description}\n`;
+                    
+                    for (const area of screenData.clickableAreas) {
+                        text += `CLICKABLE_AREA:${area.x}|${area.y}|${area.width}|${area.height}|${area.nextScreenId}|${area.label}\n`;
+                    }
+                }
+                
+                return text;
+            }
+        }
+        
+        /**
+         * Admin Manager Class
+         * Handles all admin functionality including file management, visual editing, etc.
+         */
+        class AdminManager {
+            constructor(demoNavigator) {
+                this.demoNavigator = demoNavigator;
+                this.isAdminMode = false;
+                this.isEditMode = false;
+                this.fileHandle = null;
+                this.dragStart = null;
+                this.dragRectangle = null;
+                this.editingAreaIndex = null;
+                this.editingScreenId = null;
+                
+                // Admin password (stored in localStorage)
+                this.storedPassword = localStorage.getItem('adminPassword') || 'admin123';
+                
+                // File handle storage
+                const savedFileHandle = localStorage.getItem('fileHandle');
+                if (savedFileHandle) {
+                    // Note: File handles can't be serialized, so we'll prompt again
+                    // But we can remember the file path if available
+                }
+                
+                this.initializeAdminUI();
+            }
+            
+            initializeAdminUI() {
+                // Get DOM elements
+                this.adminBtn = document.getElementById('adminBtn');
+                this.adminPanel = document.getElementById('adminPanel');
+                this.adminPanelClose = document.getElementById('adminPanelClose');
+                this.passwordModal = document.getElementById('passwordModal');
+                this.passwordInput = document.getElementById('passwordInput');
+                this.passwordSubmitBtn = document.getElementById('passwordSubmitBtn');
+                this.passwordCancelBtn = document.getElementById('passwordCancelBtn');
+                this.passwordModalClose = document.getElementById('passwordModalClose');
+                this.toggleEditModeBtn = document.getElementById('toggleEditModeBtn');
+                this.editModeIndicator = document.getElementById('editModeIndicator');
+                this.selectFileBtn = document.getElementById('selectFileBtn');
+                this.saveFileBtn = document.getElementById('saveFileBtn');
+                this.fileStatus = document.getElementById('fileStatus');
+                this.currentScreenId = document.getElementById('currentScreenId');
+                this.currentScreenTitle = document.getElementById('currentScreenTitle');
+                this.currentScreenDescription = document.getElementById('currentScreenDescription');
+                this.updateScreenBtn = document.getElementById('updateScreenBtn');
+                this.clickableAreasList = document.getElementById('clickableAreasList');
+                this.screensList = document.getElementById('screensList');
+                this.addScreenBtn = document.getElementById('addScreenBtn');
+                this.areaConfigModal = document.getElementById('areaConfigModal');
+                this.areaConfigModalClose = document.getElementById('areaConfigModalClose');
+                this.areaNextScreen = document.getElementById('areaNextScreen');
+                this.areaLabel = document.getElementById('areaLabel');
+                this.areaXSlider = document.getElementById('areaXSlider');
+                this.areaYSlider = document.getElementById('areaYSlider');
+                this.areaWidthSlider = document.getElementById('areaWidthSlider');
+                this.areaHeightSlider = document.getElementById('areaHeightSlider');
+                this.areaX = document.getElementById('areaX');
+                this.areaY = document.getElementById('areaY');
+                this.areaWidth = document.getElementById('areaWidth');
+                this.areaHeight = document.getElementById('areaHeight');
+                this.areaSaveBtn = document.getElementById('areaSaveBtn');
+                this.areaDeleteBtn = document.getElementById('areaDeleteBtn');
+                this.areaCancelBtn = document.getElementById('areaCancelBtn');
+                this.screenConfigModal = document.getElementById('screenConfigModal');
+                this.screenConfigModalClose = document.getElementById('screenConfigModalClose');
+                this.screenIdInput = document.getElementById('screenIdInput');
+                this.screenImagePath = document.getElementById('screenImagePath');
+                this.screenTitleInput = document.getElementById('screenTitleInput');
+                this.screenDescriptionInput = document.getElementById('screenDescriptionInput');
+                this.screenSaveBtn = document.getElementById('screenSaveBtn');
+                this.screenDeleteBtn = document.getElementById('screenDeleteBtn');
+                this.screenCancelBtn = document.getElementById('screenCancelBtn');
+                this.screenModalTitle = document.getElementById('screenModalTitle');
+                this.adminPasswordInput = document.getElementById('adminPassword');
+                this.savePasswordBtn = document.getElementById('savePasswordBtn');
+                
+                // Set initial password value
+                if (this.adminPasswordInput) {
+                    this.adminPasswordInput.value = this.storedPassword;
+                }
+                
+                this.setupEventListeners();
+                this.updateUI();
+            }
+            
+            setupEventListeners() {
+                // Admin button
+                this.adminBtn.addEventListener('click', () => this.toggleAdminPanel());
+                this.adminPanelClose.addEventListener('click', () => this.closeAdminPanel());
+                
+                // Password modal
+                this.passwordSubmitBtn.addEventListener('click', () => this.checkPassword());
+                this.passwordCancelBtn.addEventListener('click', () => this.closePasswordModal());
+                this.passwordModalClose.addEventListener('click', () => this.closePasswordModal());
+                this.passwordInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') this.checkPassword();
+                });
+                
+                // Edit mode toggle
+                this.toggleEditModeBtn.addEventListener('click', () => this.toggleEditMode());
+                
+                // File management
+                this.selectFileBtn.addEventListener('click', () => this.selectFile());
+                this.saveFileBtn.addEventListener('click', () => this.saveFile());
+                
+                // Screen management
+                this.updateScreenBtn.addEventListener('click', () => this.updateCurrentScreen());
+                this.addScreenBtn.addEventListener('click', () => this.openAddScreenModal());
+                this.screenSaveBtn.addEventListener('click', () => this.saveScreen());
+                this.screenDeleteBtn.addEventListener('click', () => this.deleteScreen());
+                this.screenCancelBtn.addEventListener('click', () => this.closeScreenModal());
+                this.screenConfigModalClose.addEventListener('click', () => this.closeScreenModal());
+                
+                // Clickable area management
+                this.areaSaveBtn.addEventListener('click', () => this.saveClickableArea());
+                this.areaDeleteBtn.addEventListener('click', () => this.deleteClickableArea());
+                this.areaCancelBtn.addEventListener('click', () => this.closeAreaModal());
+                this.areaConfigModalClose.addEventListener('click', () => this.closeAreaModal());
+                
+                // Coordinate sliders
+                this.areaXSlider.addEventListener('input', (e) => {
+                    this.areaX.textContent = parseFloat(e.target.value).toFixed(1);
+                });
+                this.areaYSlider.addEventListener('input', (e) => {
+                    this.areaY.textContent = parseFloat(e.target.value).toFixed(1);
+                });
+                this.areaWidthSlider.addEventListener('input', (e) => {
+                    this.areaWidth.textContent = parseFloat(e.target.value).toFixed(1);
+                });
+                this.areaHeightSlider.addEventListener('input', (e) => {
+                    this.areaHeight.textContent = parseFloat(e.target.value).toFixed(1);
+                });
+                
+                // Password settings
+                this.savePasswordBtn.addEventListener('click', () => this.saveAdminPassword());
+                
+                // Click-and-drag on image
+                this.setupDragAndDrop();
+            }
+            
+            setupDragAndDrop() {
+                const image = this.demoNavigator.currentScreenImg;
+                const container = this.demoNavigator.demoScreenContainer;
+                
+                let isDragging = false;
+                let startX, startY;
+                
+                image.addEventListener('mousedown', (e) => {
+                    if (!this.isEditMode) return;
+                    
+                    e.preventDefault();
+                    isDragging = true;
+                    
+                    const rect = image.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    startX = ((e.clientX - rect.left) / rect.width) * 100;
+                    startY = ((e.clientY - rect.top) / rect.height) * 100;
+                    
+                    this.dragStart = { x: startX, y: startY };
+                    
+                    // Create drag rectangle
+                    this.dragRectangle = document.createElement('div');
+                    this.dragRectangle.className = 'drag-rectangle';
+                    container.appendChild(this.dragRectangle);
+                    
+                    this.updateDragRectangle(startX, startY, 0, 0);
+                });
+                
+                image.addEventListener('mousemove', (e) => {
+                    if (!this.isEditMode || !isDragging) return;
+                    
+                    const rect = image.getBoundingClientRect();
+                    const currentX = ((e.clientX - rect.left) / rect.width) * 100;
+                    const currentY = ((e.clientY - rect.top) / rect.height) * 100;
+                    
+                    const x = Math.min(startX, currentX);
+                    const y = Math.min(startY, currentY);
+                    const width = Math.abs(currentX - startX);
+                    const height = Math.abs(currentY - startY);
+                    
+                    this.updateDragRectangle(x, y, width, height);
+                });
+                
+                image.addEventListener('mouseup', (e) => {
+                    if (!this.isEditMode || !isDragging) return;
+                    
+                    isDragging = false;
+                    
+                    const rect = image.getBoundingClientRect();
+                    const finalX = Math.min(startX, ((e.clientX - rect.left) / rect.width) * 100);
+                    const finalY = Math.min(startY, ((e.clientY - rect.top) / rect.height) * 100);
+                    const finalWidth = Math.abs(((e.clientX - rect.left) / rect.width) * 100 - startX);
+                    const finalHeight = Math.abs(((e.clientY - rect.top) / rect.height) * 100 - startY);
+                    
+                    if (finalWidth > 1 && finalHeight > 1) {
+                        this.openAreaConfigModal(finalX, finalY, finalWidth, finalHeight);
+                    }
+                    
+                    if (this.dragRectangle) {
+                        this.dragRectangle.remove();
+                        this.dragRectangle = null;
+                    }
+                });
+                
+                image.addEventListener('mouseleave', () => {
+                    if (isDragging) {
+                        isDragging = false;
+                        if (this.dragRectangle) {
+                            this.dragRectangle.remove();
+                            this.dragRectangle = null;
+                        }
+                    }
+                });
+            }
+            
+            updateDragRectangle(x, y, width, height) {
+                if (!this.dragRectangle) return;
+                
+                const image = this.demoNavigator.currentScreenImg;
+                const rect = image.getBoundingClientRect();
+                const containerRect = this.demoNavigator.demoScreenContainer.getBoundingClientRect();
+                
+                const imgOffsetX = rect.left - containerRect.left;
+                const imgOffsetY = rect.top - containerRect.top;
+                
+                const scaleX = rect.width / 100;
+                const scaleY = rect.height / 100;
+                
+                this.dragRectangle.style.left = (imgOffsetX + x * scaleX) + 'px';
+                this.dragRectangle.style.top = (imgOffsetY + y * scaleY) + 'px';
+                this.dragRectangle.style.width = (width * scaleX) + 'px';
+                this.dragRectangle.style.height = (height * scaleY) + 'px';
+            }
+            
+            toggleAdminPanel() {
+                if (!this.isAdminMode) {
+                    this.openPasswordModal();
+                } else {
+                    this.adminPanel.classList.toggle('active');
+                }
+            }
+            
+            openPasswordModal() {
+                this.passwordModal.classList.add('active');
+                this.passwordInput.focus();
+            }
+            
+            closePasswordModal() {
+                this.passwordModal.classList.remove('active');
+                this.passwordInput.value = '';
+            }
+            
+            checkPassword() {
+                const input = this.passwordInput.value;
+                if (input === this.storedPassword) {
+                    this.isAdminMode = true;
+                    this.adminBtn.classList.add('active');
+                    this.adminPanel.classList.add('active');
+                    this.closePasswordModal();
+                    this.updateUI();
+                    
+                    // Try to restore file handle if available
+                    this.tryRestoreFileHandle();
+                } else {
+                    alert('Incorrect password!');
+                    this.passwordInput.value = '';
+                }
+            }
+            
+            async tryRestoreFileHandle() {
+                // File handles can't be serialized, so we'll prompt to select file again
+                // But we can check if file was previously selected
+                const savedPath = localStorage.getItem('lastFilePath');
+                if (savedPath) {
+                    // Show message that file needs to be reselected
+                    this.fileStatus.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Please reselect navigation-flow.txt file';
+                }
+            }
+            
+            closeAdminPanel() {
+                this.adminPanel.classList.remove('active');
+            }
+            
+            toggleEditMode() {
+                this.isEditMode = !this.isEditMode;
+                this.editModeIndicator.classList.toggle('active', this.isEditMode);
+                
+                if (this.isEditMode) {
+                    this.toggleEditModeBtn.innerHTML = '<i class="fas fa-times"></i> Disable Edit Mode';
+                    this.toggleEditModeBtn.classList.add('danger');
+                    this.demoNavigator.currentScreenImg.style.cursor = 'crosshair';
+                } else {
+                    this.toggleEditModeBtn.innerHTML = '<i class="fas fa-edit"></i> Enable Edit Mode';
+                    this.toggleEditModeBtn.classList.remove('danger');
+                    this.demoNavigator.currentScreenImg.style.cursor = 'default';
+                }
+            }
+            
+            async selectFile() {
+                if (!window.showOpenFilePicker) {
+                    alert('File System Access API is not supported in this browser. Please use Chrome, Edge, or Opera.');
+                    return;
+                }
+                
+                try {
+                    const [fileHandle] = await window.showOpenFilePicker({
+                        types: [{
+                            description: 'Text files',
+                            accept: { 'text/plain': ['.txt'] }
+                        }],
+                        suggestedName: 'navigation-flow.txt'
+                    });
+                    
+                    this.fileHandle = fileHandle;
+                    localStorage.setItem('lastFilePath', fileHandle.name);
+                    
+                    // Read file content
+                    const file = await fileHandle.getFile();
+                    const content = await file.text();
+                    
+                    // Reload navigation flow
+                    this.demoNavigator.parseNavigationFlow(content);
+                    this.demoNavigator.initializeDemo();
+                    
+                    // Update UI
+                    this.fileStatus.className = 'file-status connected';
+                    this.fileStatus.innerHTML = '<i class="fas fa-check-circle"></i> Connected: ' + fileHandle.name;
+                    this.saveFileBtn.style.display = 'block';
+                    
+                    this.updateUI();
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        console.error('Error selecting file:', error);
+                        alert('Error selecting file: ' + error.message);
+                    }
+                }
+            }
+            
+            async saveFile() {
+                if (!this.fileHandle) {
+                    alert('No file selected. Please select a file first.');
+                    return;
+                }
+                
+                try {
+                    const content = this.demoNavigator.generateNavigationFlowText();
+                    const writable = await this.fileHandle.createWritable();
+                    await writable.write(content);
+                    await writable.close();
+                    
+                    // Show success message
+                    const originalText = this.saveFileBtn.innerHTML;
+                    this.saveFileBtn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+                    this.saveFileBtn.style.background = '#22c55e';
+                    
+                    setTimeout(() => {
+                        this.saveFileBtn.innerHTML = originalText;
+                        this.saveFileBtn.style.background = '';
+                    }, 2000);
+                    
+                    // Reload to show changes
+                    this.demoNavigator.reloadNavigationFlow();
+                } catch (error) {
+                    console.error('Error saving file:', error);
+                    alert('Error saving file: ' + error.message);
+                }
+            }
+            
+            updateCurrentScreen() {
+                const screenId = this.demoNavigator.currentScreenId;
+                const screen = this.demoNavigator.navigationGraph.get(screenId);
+                
+                if (!screen) return;
+                
+                screen.title = this.currentScreenTitle.value;
+                screen.description = this.currentScreenDescription.value;
+                this.demoNavigator.screenData[screenId].title = screen.title;
+                this.demoNavigator.screenData[screenId].description = screen.description;
+                
+                this.demoNavigator.updateScreenInfo(screen);
+                this.updateUI();
+                this.autoSave();
+            }
+            
+            openAddScreenModal() {
+                this.screenModalTitle.textContent = 'Add New Screen';
+                this.screenIdInput.value = '';
+                this.screenImagePath.value = '';
+                this.screenTitleInput.value = '';
+                this.screenDescriptionInput.value = '';
+                this.screenDeleteBtn.style.display = 'none';
+                this.screenConfigModal.classList.add('active');
+                this.editingScreenId = null;
+            }
+            
+            closeScreenModal() {
+                this.screenConfigModal.classList.remove('active');
+            }
+            
+            saveScreen() {
+                const screenId = this.screenIdInput.value.trim();
+                const imagePath = this.screenImagePath.value.trim();
+                const title = this.screenTitleInput.value.trim();
+                const description = this.screenDescriptionInput.value.trim();
+                
+                if (!screenId || !imagePath || !title || !description) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                if (this.editingScreenId) {
+                    // Update existing screen
+                    const screen = this.demoNavigator.navigationGraph.get(this.editingScreenId);
+                    if (screen) {
+                        screen.id = screenId;
+                        screen.imagePath = imagePath;
+                        screen.title = title;
+                        screen.description = description;
+                        this.demoNavigator.screenData[screenId] = { title, description };
+                        
+                        // Update graph key if ID changed
+                        if (this.editingScreenId !== screenId) {
+                            this.demoNavigator.navigationGraph.delete(this.editingScreenId);
+                            this.demoNavigator.navigationGraph.set(screenId, screen);
+                        }
+                    }
+                } else {
+                    // Add new screen
+                    const newScreen = {
+                        id: screenId,
+                        imagePath: imagePath,
+                        title: title,
+                        description: description,
+                        clickableAreas: []
+                    };
+                    this.demoNavigator.navigationGraph.set(screenId, newScreen);
+                    this.demoNavigator.screenData[screenId] = { title, description };
+                }
+                
+                this.closeScreenModal();
+                this.updateUI();
+                this.autoSave();
+            }
+            
+            deleteScreen() {
+                if (!this.editingScreenId) return;
+                
+                if (confirm(`Are you sure you want to delete screen "${this.editingScreenId}"?`)) {
+                    this.demoNavigator.navigationGraph.delete(this.editingScreenId);
+                    delete this.demoNavigator.screenData[this.editingScreenId];
+                    
+                    // Navigate away if current screen is deleted
+                    if (this.demoNavigator.currentScreenId === this.editingScreenId) {
+                        const firstScreen = this.demoNavigator.navigationGraph.keys().next().value;
+                        if (firstScreen) {
+                            this.demoNavigator.navigateToScreen(firstScreen, false);
+                        }
+                    }
+                    
+                    this.closeScreenModal();
+                    this.updateUI();
+                    this.autoSave();
+                }
+            }
+            
+            openAreaConfigModal(x, y, width, height, areaIndex = null) {
+                this.areaXSlider.value = x;
+                this.areaYSlider.value = y;
+                this.areaWidthSlider.value = width;
+                this.areaHeightSlider.value = height;
+                this.areaX.textContent = x.toFixed(1);
+                this.areaY.textContent = y.toFixed(1);
+                this.areaWidth.textContent = width.toFixed(1);
+                this.areaHeight.textContent = height.toFixed(1);
+                
+                // Populate next screen dropdown
+                this.populateNextScreenDropdown();
+                
+                this.areaLabel.value = '';
+                this.editingAreaIndex = areaIndex;
+                
+                if (areaIndex !== null) {
+                    // Editing existing area
+                    const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
+                    const area = screen.clickableAreas[areaIndex];
+                    this.areaLabel.value = area.label;
+                    this.areaNextScreen.value = area.nextScreenId;
+                    this.areaDeleteBtn.style.display = 'block';
+                } else {
+                    this.areaDeleteBtn.style.display = 'none';
+                }
+                
+                this.areaConfigModal.classList.add('active');
+            }
+            
+            populateNextScreenDropdown() {
+                this.areaNextScreen.innerHTML = '';
+                for (const [screenId, screenData] of this.demoNavigator.navigationGraph.entries()) {
+                    const option = document.createElement('option');
+                    option.value = screenId;
+                    option.textContent = screenData.title + ' (' + screenId + ')';
+                    this.areaNextScreen.appendChild(option);
+                }
+            }
+            
+            closeAreaModal() {
+                this.areaConfigModal.classList.remove('active');
+                this.editingAreaIndex = null;
+            }
+            
+            saveClickableArea() {
+                const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
+                if (!screen) return;
+                
+                const area = {
+                    x: parseFloat(this.areaXSlider.value),
+                    y: parseFloat(this.areaYSlider.value),
+                    width: parseFloat(this.areaWidthSlider.value),
+                    height: parseFloat(this.areaHeightSlider.value),
+                    nextScreenId: this.areaNextScreen.value,
+                    label: this.areaLabel.value.trim()
+                };
+                
+                if (!area.label) {
+                    alert('Please enter a label for the clickable area');
+                    return;
+                }
+                
+                if (this.editingAreaIndex !== null) {
+                    // Update existing area
+                    screen.clickableAreas[this.editingAreaIndex] = area;
+                } else {
+                    // Add new area
+                    screen.clickableAreas.push(area);
+                }
+                
+                this.demoNavigator.renderClickableAreas(screen);
+                this.closeAreaModal();
+                this.updateUI();
+                this.autoSave();
+            }
+            
+            deleteClickableArea() {
+                if (this.editingAreaIndex === null) return;
+                
+                if (confirm('Are you sure you want to delete this clickable area?')) {
+                    const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
+                    screen.clickableAreas.splice(this.editingAreaIndex, 1);
+                    
+                    this.demoNavigator.renderClickableAreas(screen);
+                    this.closeAreaModal();
+                    this.updateUI();
+                    this.autoSave();
+                }
+            }
+            
+            saveAdminPassword() {
+                const newPassword = this.adminPasswordInput.value.trim();
+                if (newPassword) {
+                    this.storedPassword = newPassword;
+                    localStorage.setItem('adminPassword', newPassword);
+                    alert('Admin password saved!');
+                }
+            }
+            
+            autoSave() {
+                if (this.fileHandle) {
+                    // Auto-save after a short delay
+                    clearTimeout(this.autoSaveTimeout);
+                    this.autoSaveTimeout = setTimeout(() => {
+                        this.saveFile();
+                    }, 1000);
+                }
+            }
+            
+            updateUI() {
+                if (!this.isAdminMode) return;
+                
+                // Update current screen info
+                const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
+                if (screen) {
+                    this.currentScreenId.value = screen.id;
+                    this.currentScreenTitle.value = screen.title;
+                    this.currentScreenDescription.value = screen.description;
+                }
+                
+                // Update clickable areas list
+                this.updateClickableAreasList();
+                
+                // Update screens list
+                this.updateScreensList();
+            }
+            
+            updateClickableAreasList() {
+                this.clickableAreasList.innerHTML = '';
+                const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
+                
+                if (screen && screen.clickableAreas.length > 0) {
+                    screen.clickableAreas.forEach((area, index) => {
+                        const li = document.createElement('li');
+                        li.className = 'admin-list-item';
+                        li.innerHTML = `
+                            <div class="admin-list-item-info">
+                                <div class="admin-list-item-title">${area.label}</div>
+                                <div class="admin-list-item-desc">→ ${this.demoNavigator.screenData[area.nextScreenId]?.title || area.nextScreenId}</div>
+                            </div>
+                            <div class="admin-list-item-actions">
+                                <button class="admin-icon-btn" onclick="adminManager.editClickableArea(${index})" title="Edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="admin-icon-btn danger" onclick="adminManager.deleteClickableAreaFromList(${index})" title="Delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                        this.clickableAreasList.appendChild(li);
+                    });
+                } else {
+                    this.clickableAreasList.innerHTML = '<li style="padding: 10px; color: #999; font-size: 0.85rem;">No clickable areas for this screen</li>';
+                }
+            }
+            
+            updateScreensList() {
+                this.screensList.innerHTML = '';
+                for (const [screenId, screenData] of this.demoNavigator.navigationGraph.entries()) {
+                    const li = document.createElement('li');
+                    li.className = 'admin-list-item';
+                    li.innerHTML = `
+                        <div class="admin-list-item-info">
+                            <div class="admin-list-item-title">${screenData.title}</div>
+                            <div class="admin-list-item-desc">ID: ${screenId} | Areas: ${screenData.clickableAreas.length}</div>
+                        </div>
+                        <div class="admin-list-item-actions">
+                            <button class="admin-icon-btn" onclick="adminManager.editScreen('${screenId}')" title="Edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="admin-icon-btn" onclick="adminManager.navigateToScreen('${screenId}')" title="View">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    `;
+                    this.screensList.appendChild(li);
+                }
+            }
+            
+            editClickableArea(index) {
+                const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
+                const area = screen.clickableAreas[index];
+                this.openAreaConfigModal(area.x, area.y, area.width, area.height, index);
+            }
+            
+            deleteClickableAreaFromList(index) {
+                if (confirm('Are you sure you want to delete this clickable area?')) {
+                    const screen = this.demoNavigator.navigationGraph.get(this.demoNavigator.currentScreenId);
+                    screen.clickableAreas.splice(index, 1);
+                    this.demoNavigator.renderClickableAreas(screen);
+                    this.updateUI();
+                    this.autoSave();
+                }
+            }
+            
+            editScreen(screenId) {
+                const screen = this.demoNavigator.navigationGraph.get(screenId);
+                if (!screen) return;
+                
+                this.screenModalTitle.textContent = 'Edit Screen';
+                this.screenIdInput.value = screen.id;
+                this.screenImagePath.value = screen.imagePath;
+                this.screenTitleInput.value = screen.title;
+                this.screenDescriptionInput.value = screen.description;
+                this.screenDeleteBtn.style.display = 'block';
+                this.screenConfigModal.classList.add('active');
+                this.editingScreenId = screenId;
+            }
+            
+            navigateToScreen(screenId) {
+                this.demoNavigator.navigateToScreen(screenId, false);
+                this.updateUI();
+            }
         }
         
         // Initialize the demo when DOM is ready
         let demoNavigator;
+        let adminManager;
         document.addEventListener('DOMContentLoaded', function() {
             demoNavigator = new InteractiveDemoNavigator();
+            adminManager = new AdminManager(demoNavigator);
         });
     </script>
 
