@@ -13,24 +13,18 @@
 # ============================================================
 
 
-# Screen: Secure Login System
-SCREEN:login|assets/images/about/Flow POS/login.jpeg|Secure Login System|PIN-based authentication interface with secure access
+# Screen: Shop
+SCREEN:POS|assets/images/about/Flow POS/shop.jpeg|Shop|POS Shop
+CLICKABLE_AREA:94.8|95.4|4.3|4.6|main_menu|menu|#22c55e
+
+# Screen: Login Screen
+SCREEN:login|assets/images/about/Flow POS/login.jpeg|Login Screen|Central command center for all Flow POS operations
 CLICKABLE_AREA:79|60|10|12|main_menu|Login PIN Entry Area|#22c55e
 CLICKABLE_AREA:70|76|10|10|login|Exit Button|#22c55e
 
-# Screen: Main Dashboard
-SCREEN:main_menu|assets/images/about/Flow POS/main menu.jpeg|Main Dashboard|Central command center for all Flow POS operations
-CLICKABLE_AREA:35|9|30|20|order_bill|POS Module|#22c55e
+# Screen: Main menu
+SCREEN:main_menu|assets/images/about/Flow POS/main menu.jpeg|Main menu|Central command center for all Flow POS operations
+CLICKABLE_AREA:35|9|30|20|POS|POS Module|#22c55e
 CLICKABLE_AREA:67|32|30|20|search_vendor|Vendor Management|#22c55e
 CLICKABLE_AREA:2.5|51|30|20|shop_details|Expense Management|#22c55e
 CLICKABLE_AREA:36|75|30|18|login|Logout Button|#22c55e
-
-# Screen: Order Management
-SCREEN:order_bill|assets/images/about/Flow POS/order bill.jpeg|Order Management|Complete order view with itemized list and payment options
-CLICKABLE_AREA:10|78|17|8|print_bill|Settle Button|#22c55e
-CLICKABLE_AREA:10|86|35|9|main_menu|Back Button|#22c55e
-CLICKABLE_AREA:28|78|17|8|main_menu|Close Button|#22c55e
-
-# Screen: Payment Processing
-SCREEN:print_bill|assets/images/about/Flow POS/print bill.jpeg|Payment Processing|Advanced payment methods with multiple payment options
-CLICKABLE_AREA:85|85|15|11|main_menu|Close Button|#22c55e
